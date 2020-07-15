@@ -1,0 +1,25 @@
+Holi amiguitos.
+con el fin de que todos tengamos estructura similar en la codificación
+vamos a tomar ciertas directrices:
+
+	Código Identado
+	Identación por default de 4 espacios.
+	Comentar respectivamente el código
+	Variables con nombres declarativos.
+	Funciones con nombres declarativos.
+	No borrar código del compañero.
+
+Programas a utilizar:
+
+	Editor de Código: Es libre con el que Uds mejor se acomoden, yo hago uso de 
+			  Visual Studio Code VSCode por la gran cantidad de extenciones
+			  y la fácil configuración
+
+	Servidor local: Xampp que integra la BDD de MariaDB (PhpMyAdmin) y el interprete de php 7.
+	
+	Base de datos: MariaDB (PhpMyAdmin) porque ya viene integrada en Xampp y es la más usada en
+		       en el desarrollo web o si prefieren SQL Server.
+
+Interfaz:
+	
+			   
