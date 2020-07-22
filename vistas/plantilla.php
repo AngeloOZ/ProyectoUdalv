@@ -6,6 +6,9 @@
     <title>UDALV</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <script src="vistas/js/sweetalert2.all.min.js"></script>
+    <!-- scripts propios -->
 </head>
 <body>
     <?php 

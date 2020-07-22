@@ -1,4 +1,5 @@
 <?php 
+require_once "../modelos/modelos.login.php";
 class AjaxFormularios{
     
     public $emailRegister;
@@ -8,7 +9,11 @@ class AjaxFormularios{
         $columna = "email";
         $dato = $this->emailRegister;
         $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla, $columna, $dato);
-        echo json_encode($respuesta);
+        if(empty($respuesta)){
+            echo "disponible";
+        }else{
+            echo "ocupado";
+        }
     } 
 }
 

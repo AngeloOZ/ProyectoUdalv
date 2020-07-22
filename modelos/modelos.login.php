@@ -33,11 +33,11 @@ class ModelosFormularios{
 //?                          Modelos Registrar Usuario                         */
 //* -------------------------------------------------------------------------- */
     public static function mdlRegistrarUsuario($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(name, email, password) VALUES(name = :name, email = :email, password = :password)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(name, email, password) VALUES(:name,:email, :password)");
 
-        $stmt->bindParam(":name",$datos['name']);
-        $stmt->bindParam(":email",$datos['email']);
-        $stmt->bindParam(":password",$datos['password']);
+        $stmt->bindParam(":name", $datos['name'], PDO::PARAM_STR);
+        $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
+        $stmt->bindParam(":password", $datos['password'], PDO::PARAM_STR);
 
         if($stmt->execute()){
             return "ok";

@@ -36,7 +36,7 @@
                     <a href="#" onclick="RegistrarUser()">Crear cuenta</a>
                 </div>
             </form>
-            <form action="" id="form-register" class="form-register" method="POST">
+            <form action="" method="post" id="form-register" class="form-register">
                 <div class="form-group">
                     <input type="text" name="registrarNombre" required id="registrarNombre"><span class="barra"></span>
                     <label for="">Nombre y Apellido</label>
@@ -64,18 +64,22 @@
                     </label>
                 </div>
                 <input type="submit" value="Registrarme" class="btn-registrar">
-                
+
                 <div class="have-accont">
                     <span>¿Ya tienes una cuenta?</span>
                     <a href="#" onclick="Userlogin()">Iniciar sesión</a>
                 </div>
+                <?php 
+                    $registrarUsuario = new ControladorFormularios();
+                    $registrarUsuario->ctrRegistrarUsuario();
+                ?>
             </form>
         </div>
     </div>
 </main>
+<script src="vistas/js/ajax.js"></script>
 <script src="vistas/js/login.js"></script>
-    <script src="vistas/js/ajax.js"></script>
-    <script>
-        ValidarFormularioIngreso();
-        ValidarFormularioRegistro();
-    </script>
+<script>
+    ValidarFormularioIngreso();
+    ValidarFormularioRegistro();
+</script>

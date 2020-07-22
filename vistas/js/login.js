@@ -132,11 +132,29 @@ function ValidarFormularioRegistro(){
         email = inputRegistrarEmail.value.trim();
         if(!(email.length < 5 || email.length == 0)){
             if(emailRegex.test(email)){
-                ComprobadorEmail();
-                    bandEmail = true;
-                    this.MsgWarning(formgruoEmail.querySelector('p'), bandEmail);
-                    this.InputValidation(inputRegistrarEmail, bandEmail);
-                    this.LabelValidation(formgruoEmail.querySelector('label'), bandEmail);
+
+                let datos = new FormData();
+                datos.append("validarEmail",email);
+                let xhr;
+                if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
+                else xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                xhr.open('POST', 'ajax/ajax.controlador.php');
+                xhr.addEventListener('load', ()=>{
+                    resultado = (xhr.response);
+                    if(resultado ==  "disponible"){
+                        bandEmail = true;
+                        this.MsgWarning(formgruoEmail.querySelector('p'), bandEmail);
+                        this.InputValidation(inputRegistrarEmail, bandEmail);
+                        this.LabelValidation(formgruoEmail.querySelector('label'), bandEmail);
+                    }else{
+                        bandEmail = false;
+                        formgruoEmail.querySelector('p').innerHTML = "Este correo ya esta en uso";
+                        this.MsgWarning(formgruoEmail.querySelector('p'), bandEmail);
+                        this.LabelValidation(formgruoEmail.querySelector('label',bandEmail));
+                        this.InputValidation(inputRegistrarEmail, bandEmail);
+                    }
+                })
+                xhr.send(datos);
             }else{
                 bandEmail = false;
                 formgruoEmail.querySelector('p').innerHTML = "El correo solo puede contener letras, números, puntos, guiones y guión bajo";
@@ -193,7 +211,6 @@ function ValidarFormularioRegistro(){
     formRegister.addEventListener('submit',(e)=>{
         if((inputTerms.checked) && bandEmail && bandNombre && bandPass && bandPassCon){
             console.log('se registro');
-            e.returnValue = true;
         }else{
             alert('Debe aceptar los terminos y condiciones');
             e.preventDefault();
