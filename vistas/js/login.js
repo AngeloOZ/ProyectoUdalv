@@ -132,10 +132,11 @@ function ValidarFormularioRegistro(){
         email = inputRegistrarEmail.value.trim();
         if(!(email.length < 5 || email.length == 0)){
             if(emailRegex.test(email)){
-                bandEmail = true;
-                this.MsgWarning(formgruoEmail.querySelector('p'), bandEmail);
-                this.InputValidation(inputRegistrarEmail, bandEmail);
-                this.LabelValidation(formgruoEmail.querySelector('label'), bandEmail);
+                ComprobadorEmail();
+                    bandEmail = true;
+                    this.MsgWarning(formgruoEmail.querySelector('p'), bandEmail);
+                    this.InputValidation(inputRegistrarEmail, bandEmail);
+                    this.LabelValidation(formgruoEmail.querySelector('label'), bandEmail);
             }else{
                 bandEmail = false;
                 formgruoEmail.querySelector('p').innerHTML = "El correo solo puede contener letras, números, puntos, guiones y guión bajo";
