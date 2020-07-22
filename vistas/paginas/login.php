@@ -1,3 +1,12 @@
+<?php 
+    if(isset($_SESSION["validarSession"])){
+        if($_SESSION["validarSession"] == "ok"){
+            header("location: inicio");
+            return;
+        }
+    }
+    $csrfToken = Seguridad::CrearToken();
+?>
 <title>Bienvenidos a UDALV</title>
 <main class="main-menu">
     <div class="ctn-menu">
@@ -35,6 +44,11 @@
                     <span>¿Aún no te has registrado?</span>
                     <a href="#" onclick="RegistrarUser()">Crear cuenta</a>
                 </div>
+                <input type="hidden" name="tokenCSRF" value="<?php echo $csrfToken?>">
+                <?php 
+                    $iniciarSession = new ControladorFormularios();
+                    $iniciarSession->ctrIniciarSession();
+                ?>
             </form>
             <form action="" method="post" id="form-register" class="form-register">
                 <div class="form-group">
@@ -69,6 +83,7 @@
                     <span>¿Ya tienes una cuenta?</span>
                     <a href="#" onclick="Userlogin()">Iniciar sesión</a>
                 </div>
+                <input type="hidden" name="tokenCSRF" value="<?php echo $csrfToken?>">
                 <?php 
                     $registrarUsuario = new ControladorFormularios();
                     $registrarUsuario->ctrRegistrarUsuario();

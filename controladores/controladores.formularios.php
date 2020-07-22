@@ -2,7 +2,7 @@
 class ControladorFormularios{
 
 //* -------------------------------------------------------------------------- */
-//*                      Controlador Seleccionar registro                      */
+//*                      Controlador Registrar registro                      */
 //* -------------------------------------------------------------------------- */
     public function ctrRegistrarUsuario(){
         if(isset($_POST["registrarCorreo"])){
@@ -19,7 +19,7 @@ class ControladorFormularios{
                         $datos = array(
                             "name"=>$nombre,
                             "email"=>$email,
-                            "password"=>$password
+                            "password"=>password_hash($password, PASSWORD_BCRYPT)
                         );
                         $respuesta = ModelosFormularios::mdlRegistrarUsuario($tabla,$datos);
                         if($respuesta == "ok"){
@@ -40,29 +40,65 @@ class ControladorFormularios{
             }
         }
     }
+//* -------------------------------------------------------------------------- */
+//*                         Controlador Iniciar Sesión                         */
+//* -------------------------------------------------------------------------- */
+    public function ctrIniciarSession(){
+        if(isset($_POST["ingresarEmail"])){
+            if(!Seguridad::VerificarToken($_POST["tokenCSRF"])){
+                MsgError("Estas intentando hackear el sitio");
+                LimpiarCache();
+                return;
+            }
+            $email = $_POST["ingresarEmail"];
+            $password = $_POST["ingresarPwd"];
+            if(!empty($email) && !empty($password)){
+                $tabla = "usuario";
+                $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla,"email",$email);
+                if(!empty($respuesta)){
+                    if($email == $respuesta["email"] && password_verify($password,$respuesta["password"])){
+                        $_SESSION["validarSession"] = "ok";
+                        header("location: inicio");
+                        LimpiarCache();
+                    }else{
+                        MsgError("El correo o la contraseña no son correctos");
+                        LimpiarCache();
+                    }
+                }else{
+                    MsgError("El correo no esta registrado en nuestros datos");
+                    LimpiarCache();
+                }
+            }else{
+                MsgError("Error");
+            }
+        }
+    }
 }
 
+//todo -------------------------------------------------------------------------- */
+//todo                       Funciones de utiles repetitivas                      */
+//todo -------------------------------------------------------------------------- */
 
 function MsgError($sms){
-    echo '<script>
-    Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "$sms"
-      })
-    </script>';
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '".$sms."'
+        })
+    </script>";
 }
 function MsgSuccess($sms){
-    echo '
+    echo "
         <script>
             Swal.fire({
-                icon: "success",
-                title: "El usuario se registro correctamente",
+                icon: 'success',
+                title: '".$sms."',
                 showConfirmButton: false,
                 timer: 2000
             })
         </script>
-    ';
+    ";
 }
 function LimpiarCache(){
     echo '<script>

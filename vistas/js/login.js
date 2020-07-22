@@ -44,7 +44,7 @@ function ValidarFormularioIngreso(){
     let formgroup = inputIngresarEmail.parentElement;
     let formgroup2 = inputIngresarPwd.parentElement;
 
-    inputIngresarEmail.addEventListener('focusout',()=>{
+    inputIngresarEmail.addEventListener('change',()=>{
         let correo = inputIngresarEmail.value.trim();  
         if(emailRegex.test(correo)){
             bandEmail = true;
@@ -58,9 +58,9 @@ function ValidarFormularioIngreso(){
             this.InputValidation(inputIngresarEmail, bandEmail);
         }
     })
-    inputIngresarPwd.addEventListener('focusout', ()=>{
+    inputIngresarPwd.addEventListener('change', ()=>{
         let pws = inputIngresarPwd.value.trim();
-        if(pws.length >= 4 && pws.length <=20 && passwordRegex.test(pws)){
+        if((pws.length >= 4 && pws.length <=20) && passwordRegex.test(pws)){
             bandPwd = true;
             this.MsgWarning(formgroup2.querySelector('p'), bandPwd);
             this.LabelValidation(formgroup2.querySelector('label'), bandPwd);
@@ -107,7 +107,7 @@ function ValidarFormularioRegistro(){
     //!Fin del arreglo bug
 
     //*Validar al perder el foco de los input
-    inputRegistrarNombre.addEventListener('focusout',()=>{
+    inputRegistrarNombre.addEventListener('change',()=>{
         name = inputRegistrarNombre.value.trim();
         if(name.length >= 2 && name.length <= 80){
             if(nombreRegex.test(name)){
@@ -128,7 +128,7 @@ function ValidarFormularioRegistro(){
             this.LabelValidation(formgroupNombre.querySelector('label'), false);
         }
     })
-    inputRegistrarEmail.addEventListener('focusout',()=>{
+    inputRegistrarEmail.addEventListener('change',()=>{
         email = inputRegistrarEmail.value.trim();
         if(!(email.length < 5 || email.length == 0)){
             if(emailRegex.test(email)){
@@ -170,7 +170,7 @@ function ValidarFormularioRegistro(){
             this.InputValidation(inputRegistrarEmail, bandEmail);
         }
     });
-    inputRegistrarPassword.addEventListener('focusout',()=>{
+    inputRegistrarPassword.addEventListener('change',()=>{
         pwd = inputRegistrarPassword.value.trim();
         if((pwd.length != 0 && (pwd.length >=4 && pwd.length <= 20))){
             if(passwordRegex.test(pwd)){
@@ -193,7 +193,7 @@ function ValidarFormularioRegistro(){
             this.InputValidation(inputRegistrarPassword,bandPass);
         }
     });
-    inputConfirmPassword.addEventListener('focusout',()=>{
+    inputConfirmPassword.addEventListener('change',()=>{
         confirmPwd = inputConfirmPassword.value.trim();
         pwd = inputRegistrarPassword.value.trim();
         if(confirmPwd == pwd){
