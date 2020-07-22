@@ -9,3 +9,4 @@
 
     $plantilla = new ControladorPlantilla();
     $plantilla->ctrTraerPlantilla();
+    //hola
