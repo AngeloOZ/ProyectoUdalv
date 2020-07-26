@@ -92,7 +92,6 @@
         </div>
     </div>
 </main>
-<script src="vistas/js/ajax.js"></script>
 <script src="vistas/js/login.js"></script>
 <script>
     ValidarFormularioIngreso();

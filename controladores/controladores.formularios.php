@@ -58,6 +58,7 @@ class ControladorFormularios{
                 if(!empty($respuesta)){
                     if($email == $respuesta["email"] && password_verify($password,$respuesta["password"])){
                         $_SESSION["validarSession"] = "ok";
+                        $_SESSION["emailUser"] = $respuesta["email"];
                         header("location: inicio");
                         LimpiarCache();
                     }else{
@@ -72,6 +73,17 @@ class ControladorFormularios{
                 MsgError("Error");
             }
         }
+    }
+
+//* -------------------------------------------------------------------------- */
+//*                      Controlador obtener datos usuario                     */
+//* -------------------------------------------------------------------------- */
+    public static function ctrObtenerDatosUser(){
+        $tabla = "usuario";
+        $columna  = "email";
+        $dato = $_SESSION["emailUser"];
+        $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla,$columna,$dato);
+        return $respuesta;
     }
 }
 

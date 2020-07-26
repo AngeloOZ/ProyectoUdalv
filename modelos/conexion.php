@@ -9,5 +9,8 @@
                 print ($e->getMessage());
             }
         }
+        public static function conectarRemote(){
+
+        }
     }
 

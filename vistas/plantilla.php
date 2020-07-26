@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UDALV</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./vistas/css/style.css">
     <link rel="stylesheet" href="css/sweetalert2.min.css">
     <script src="vistas/js/sweetalert2.all.min.js"></script>
+    <script src="https://kit.fontawesome.com/736596057b.js" crossorigin="anonymous"></script>
     <!-- scripts propios -->
 </head>
 <body>

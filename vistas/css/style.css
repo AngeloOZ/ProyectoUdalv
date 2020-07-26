@@ -232,6 +232,97 @@ body {
     color: #62CDB9;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                             Estilos del inicio                             */
+/* -------------------------------------------------------------------------- */
+.header-inicio{
+    height: 80px;
+    width: 100%;
+    background-color: #000;
+    transition: 0.3s ease-in-out transform;
+}
+body.active-barra .header-inicio{
+    transform: translateX(-80%);
+}
+body.active-barra .menu-lateral{
+    transform: translateX(0%);
+}
+.nav{
+    height: inherit;
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    font-size: 25px;
+    color: #fff;
+    font-weight: 600;
+}
+.profile{
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
+.menu-lateral{
+    position: fixed;
+    background-color: #212529;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 80%;
+    transform: translateX(100%);
+    transition: 0.3s ease-in-out transform;
+}
+.menu-lateral .datos{
+    height: 135px;
+    width: 100%;
+    text-align: center;
+    background-color: #243D51;
+    color: #e0e0e0;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.datos span{
+    color: #4DABF7;
+    font-size: 35px;
+    padding-bottom: 10px;
+}
+.datos p{
+    padding-bottom: 5px;
+}
+.opciones{
+    width: 100%;
+    height: auto;
+}
+.opcion{
+    width: 100%;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    transition: .2s ease-in background;
+    padding: 0 25px;
+}
+a.opcion{
+    text-decoration: none;
+}
+.opcion:hover{
+    background-color: #339AF0;
+}
+.icono-opcion{
+    color: #fff;
+    font-size: 22px;
+    margin-right: 15px;
+    font-weight: 700;
+}
+.texto-opcion{
+    color: #fff;
+    font-size: 18px;
+}
 @media screen and (min-width: 730px) {
     .main-menu {
         display: flex;
@@ -323,6 +414,12 @@ body {
     }
     .ctn-menu.active .information-menu .ctn-btn .btn-iniciar2{
         display: block  ;
+    }
+    .menu-lateral{
+        width: 300px;
+    }
+    body.active-barra .header-inicio{
+        transform: translateX(-300px);
     }
 }
 
