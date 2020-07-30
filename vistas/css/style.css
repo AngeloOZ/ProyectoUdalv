@@ -241,7 +241,8 @@ body {
     background-color: #000;
     transition: 0.3s ease-in-out transform;
 }
-body.active-barra .header-inicio{
+body.active-barra .header-inicio,
+body.active-barra main{
     transform: translateX(-80%);
 }
 body.active-barra .menu-lateral{
@@ -306,12 +307,23 @@ body.active-barra .menu-lateral{
     background-color: transparent;
     transition: .2s ease-in background;
     padding: 0 25px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
 }
 a.opcion{
     text-decoration: none;
 }
 .opcion:hover{
     background-color: #339AF0;
+}
+.opcion::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 54px;
+    width: 100%;
 }
 .icono-opcion{
     color: #fff;
@@ -322,6 +334,47 @@ a.opcion{
 .texto-opcion{
     color: #fff;
     font-size: 18px;
+}
+/* -------------------------------------------------------------------------- */
+/*                              Contenedor panels                             */
+/* -------------------------------------------------------------------------- */
+.contenedor-tab{
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 80px);
+    position: relative;
+    transition: 0.3s ease-in-out transform;
+}
+.tab{
+    width: 100%;
+    margin: auto;
+    font-size: 50px;
+    height: 100%;
+    position: absolute;
+    left: -100%;
+    text-align: center;
+        /* transition: .3s ease-out all; */
+}
+.tab:nth-child(1){
+    background-color: darkblue;
+}
+.tab:nth-child(2){
+    background-color: darkgoldenrod;
+}
+.tab:nth-child(3){
+    background-color: darksalmon;
+}
+.tab:nth-child(4){
+    background-color: darkviolet;
+}
+.tab:nth-child(5){
+    background-color: #B06AB3;
+}
+.tab.visible-tab{
+    left: 0;
+}
+.opcion.active-tab{
+    background-color: #339AF0;
 }
 @media screen and (min-width: 730px) {
     .main-menu {
@@ -418,7 +471,8 @@ a.opcion{
     .menu-lateral{
         width: 300px;
     }
-    body.active-barra .header-inicio{
+    body.active-barra .header-inicio,
+    body.active-barra main{
         transform: translateX(-300px);
     }
 }

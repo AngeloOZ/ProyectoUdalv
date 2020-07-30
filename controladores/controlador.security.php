@@ -1,13 +1,19 @@
 <?php 
 class Seguridad{
-    static public function CrearToken(){
-        if(empty($_SESSION["key"])){
-            $_SESSION['key'] = bin2hex(random_bytes(32));
+    public static $tokenName;
+
+    static public function CrearToken($token){
+        self::$tokenName = $token;
+        if(!isset($_SESSION["tokenCsrf_".$token]) || empty($_SESSION["tokenCsrf_".$token])){
+            $_SESSION["tokenCsrf_".$token] = bin2hex(random_bytes(32));
         }
-        return password_hash($_SESSION["key"],PASSWORD_DEFAULT);
+        return password_hash($_SESSION["tokenCsrf_".$token],PASSWORD_DEFAULT);
     }
     static public function VerificarToken($hash){
-
-        return password_verify($_SESSION["key"], $hash);
+        $name = self::$tokenName;
+        $resp = password_verify($_SESSION["tokenCsrf_".$name], $hash);
+        $_SESSION["tokenCsrf_".$name] = null;
+        unset($_SESSION["tokenCsrf_".$name]);
+        return $resp;
     }
 }

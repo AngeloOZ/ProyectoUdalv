@@ -16,26 +16,26 @@
         <p><?php echo $usuario["name"] ?></p>
         <p><?php echo $usuario["email"] ?></p>
     </div>
-    <div class="opciones">
+    <div class="opciones" id="tabs">
         <div class="opcion">
             <span class="icono-opcion"><i class="fas fa-user-edit"></i></span>
             <span class="texto-opcion">Editar Usuario</span>
         </div>
-        <div class="opcion">
-            <span class="icono-opcion"><i class="fas fa-link"></i></span>
-            <span class="texto-opcion">Enlaces</span>
+        <div class="opcion active-tab">
+            <span class="icono-opcion"><i class="fas fa-calendar-alt"></i></span>
+            <span class="texto-opcion">Calendario</span>
         </div>
         <div class="opcion">
             <span class="icono-opcion"><i class="fas fa-tasks"></i></i></span>
             <span class="texto-opcion">Tareas</span>
         </div>
         <div class="opcion">
-            <span class="icono-opcion"><i class="fas fa-calendar-alt"></i></span>
-            <span class="texto-opcion">Calendario</span>
-        </div>
-        <div class="opcion">
             <span class="icono-opcion"><i class="fas fa-moon"></i></span>
             <span class="texto-opcion">Mood Tracker</span>
+        </div>
+        <div class="opcion">
+            <span class="icono-opcion"><i class="fas fa-link"></i></span>
+            <span class="texto-opcion">Enlaces</span>
         </div>
         <a href="salir" class="opcion">
             <span class="icono-opcion"><i class="fas fa-sign-out-alt"></i></span>
@@ -51,21 +51,13 @@
         </div>
     </nav>
 </header>
+<main class="contenedor-tab">
+       <div class="tab"><?php require_once "./vistas/modulos/usuario.php"; ?></div>
+       <div class="tab visible-tab"><?php require_once "./vistas/modulos/calendario.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/modulos/tareas.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/modulos/mod.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/modulos/enlaces.php"; ?></div>
+</main>
 <script>
-    user = document.getElementById("user");
-    body = document.querySelector('body');
-    function BarraLateral(){
-        body.classList.toggle('active-barra');
-        if(body.classList.contains('active-barra')){
-            user.classList.remove('fa-user-circle');
-            user.classList.remove('fas')
-            user.classList.add('fa-times-circle');
-            user.classList.add('far');
-        }else{
-            user.classList.add('fa-user-circle')
-            user.classList.add('fas')
-            user.classList.remove('fa-times-circle');
-            user.classList.remove('far');
-        }
-    }
+    TabPanel();
 </script>    

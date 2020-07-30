@@ -5,7 +5,7 @@
             return;
         }
     }
-    $csrfToken = Seguridad::CrearToken();
+    $csrf = Seguridad::CrearToken("login");
 ?>
 <title>Bienvenidos a UDALV</title>
 <main class="main-menu">
@@ -44,7 +44,7 @@
                     <span>¿Aún no te has registrado?</span>
                     <a href="#" onclick="RegistrarUser()">Crear cuenta</a>
                 </div>
-                <input type="hidden" name="tokenCSRF" value="<?php echo $csrfToken?>">
+                <input type="hidden" name="tokenCSRF" value="<?php echo $csrf ?>">
                 <?php 
                     $iniciarSession = new ControladorFormularios();
                     $iniciarSession->ctrIniciarSession();
@@ -83,7 +83,7 @@
                     <span>¿Ya tienes una cuenta?</span>
                     <a href="#" onclick="Userlogin()">Iniciar sesión</a>
                 </div>
-                <input type="hidden" name="tokenCSRF" value="<?php echo $csrfToken?>">
+                <input type="hidden" name="tokenCSRF" value="<?php echo $csrf ?>">
                 <?php 
                     $registrarUsuario = new ControladorFormularios();
                     $registrarUsuario->ctrRegistrarUsuario();
