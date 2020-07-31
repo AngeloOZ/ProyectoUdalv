@@ -1,15 +1,16 @@
 <?php 
-    if(!isset($_SESSION["validarSession"])){
-        header("location: login");
-        return;
-    }else{
-        if($_SESSION["validarSession"] != "ok"){
-            header("location: login");
-            return;
-        }
-    }
-    $usuario = ControladorFormularios::ctrObtenerDatosUser();
-?>
+    // if(!isset($_SESSION["validarSession"])){
+    //     header("location: login");
+    //     return;
+    // }else{
+    //     if($_SESSION["validarSession"] != "ok"){
+    //         header("location: login");
+    //         return;
+    //     }
+    // }
+    // $usuario = ControladorFormularios::ctrObtenerDatosUser();
+    $usuario = array("name"=>"Invitado","email"=>"invitado@invitado.com")
+?> 
 <div class="menu-lateral">
     <div class="datos">
         <span><i class="fas fa-user-ninja"></i></span>
