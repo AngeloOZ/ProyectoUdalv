@@ -1,0 +1,71 @@
+
+.notas{
+  margin: 50px auto;
+  text-align: center;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+}
+
+.notas .nota{
+  font-size: 17px;
+  margin: 60px 10px;
+  padding: 20px;
+  width: 274px;
+  border: solid 3px #DE8FC3;
+  height: 300px;
+  background-color: #171717;
+}
+.notas h3{
+  color: #DE8FC3;
+  text-align: center;
+}
+.notas a{
+  padding: 10px 0px;
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1px;
+  width: 200px;
+}
+.notas p{
+  height: 170px;
+  overflow: hidden;
+  color: #fff;
+  margin-top: 10px;
+  text-align: justify;
+}
+
+
+.nota a{
+  text-align: center;
+  margin-top: 20px;
+  color: #7766BB;
+
+}
+
+
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#CC86B4;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+}
+.float:hover {
+  text-decoration: none;
+  color: #CC86B4;
+  background-color:#fff;
+}
+
+.my-float{
+  margin-top:16px;
+}
+#add{
+  padding-top: 15px;
+}
