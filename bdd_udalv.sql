@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-07-2020 a las 01:12:36
+-- Tiempo de generación: 05-08-2020 a las 21:52:45
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -35,6 +35,26 @@ CREATE TABLE `enlace` (
   `id_user` int(11) NOT NULL,
   `token_user` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `enlace`
+--
+
+INSERT INTO `enlace` (`id`, `name`, `icon`, `link`, `id_user`, `token_user`) VALUES
+(6, 'ascacs', 'fab fa-github', 'http://localhost/udalv/inicio', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(7, 'ascacs', 'fab fa-github', 'http://localhost/udalv/inicio', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(8, 'a,smc am,s', 'fab fa-gitkraken', 'http://localhost/udalv/inicio', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(9, 'ascasc', 'fab fa-gitkraken', 'http://localhost/udalv/inicio', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(10, 'FormData Js', 'fab fa-wikipedia-w', 'https://javascript.info/formdata', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(11, 'mozilla', 'fab fa-github', 'https://developer.mozilla.org/es/docs/Web/Guide/Usando_Objetos_FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(12, 'Mozilla', 'fab fa-gitkraken', 'https://developer.mozilla.org/es/docs/Web/Guide/Usando_Objetos_FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(13, 'Mozilla', 'fab fa-gitkraken', 'https://developer.mozilla.org/es/docs/Web/Guide/Usando_Objetos_FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(14, 'Mozilla 2', 'fas fa-bookmark', 'https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(15, 'skdnvslk', 'fab fa-gitkraken', 'https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(16, 'w3school', 'fab fa-gitkraken', 'https://www.w3schools.com/jsref/met_form_reset.asp', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(17, 'Youtube', 'fab fa-youtube', 'https://www.youtube.com', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(18, 'facebbok', 'fab fa-facebook', 'https://www.facebook.com', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(19, 'Whatsapp', 'fab fa-instagram', 'https://web.whatsapp.com/', 4, '$2y$10$6va9f7N5CdoqPMsaR8du4.ClqtPyT0bzgdd.eA4xT2KZxclCZ5/02');
 
 -- --------------------------------------------------------
 
@@ -96,6 +116,18 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `token`, `name`, `lastname`, `username`, `password`, `email`, `birthday`) VALUES
+(3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 'Angello', 'Ordonez', NULL, '$2y$10$bnx5v7yuX/Oclko3YH1CEu82N5bTLj9tjCb098.U8XZkVZXJMnSXu', 'angello@gmail.com', NULL),
+(4, '$2y$10$6va9f7N5CdoqPMsaR8du4.ClqtPyT0bzgdd.eA4xT2KZxclCZ5/02', 'Milena', 'Ballesteros', NULL, '$2y$10$Z9HXmpyeUxuT8lVfYLPc9OkE9o3Tn7V0plCfoC4ORG12uQHwBpqr2', 'mile@gmail.com', NULL);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
 -- Indices de la tabla `enlace`
 --
 ALTER TABLE `enlace`
@@ -128,8 +160,7 @@ ALTER TABLE `tarea`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`,`token`),
-  ADD UNIQUE KEY `unique_email` (`email`),
-  ADD UNIQUE KEY `unique_username` (`username`);
+  ADD UNIQUE KEY `unique_email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -139,7 +170,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `enlace`
 --
 ALTER TABLE `enlace`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
@@ -163,7 +194,7 @@ ALTER TABLE `tarea`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -185,7 +216,7 @@ ALTER TABLE `estado`
 -- Filtros para la tabla `notas`
 --
 ALTER TABLE `notas`
-  ADD CONSTRAINT `FK_nota` FOREIGN KEY (`id_user`,`token_user`) REFERENCES `usuario` (`id`, `token`);
+  ADD CONSTRAINT `FK_nota` FOREIGN KEY (`id_user`,`token_user`) REFERENCES `usuario` (`id`, `token`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tarea`
