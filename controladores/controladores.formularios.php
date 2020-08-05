@@ -1,23 +1,27 @@
 <?php 
 class ControladorFormularios{
-
+    public $tokenComplement = "Security@#12$20%";
 //* -------------------------------------------------------------------------- */
 //*                      Controlador Registrar registro                      */
 //* -------------------------------------------------------------------------- */
     public function ctrRegistrarUsuario(){
         if(isset($_POST["registrarCorreo"])){
             $email =  $_POST["registrarCorreo"];
-            $nombre = $_POST["registrarNombre"];
+            $nombreCompleto = $_POST["registrarNombre"];
             $password = $_POST["registrarPwd"];
-            if(!empty($email) && !empty($nombre) && !empty($password)){
+            if(!empty($email) && !empty($nombreCompleto) && !empty($password)){
                 if(filter_var($email,FILTER_VALIDATE_EMAIL) &&
-                preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚÑñ ,]+$/',$nombre) &&
+                preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚÑñ ,]+$/',$nombreCompleto) &&
                 preg_match('/^[0-9a-zA-Z@#.$%&]+$/',$password)){
                     $tabla = "usuario";
                     $existeEmail = ModelosFormularios::mdlSeleccionarRegistros($tabla,"email",$email);
                     if(empty($existeEmail)){
+                         list($name, $lastname) = explode(" ",$nombreCompleto);
+                        $token = password_hash("$email+$this->tokenComplement",PASSWORD_DEFAULT);
                         $datos = array(
-                            "name"=>$nombre,
+                            "token" => $token,
+                            "name"=>$name,
+                            "lastname" => $lastname,
                             "email"=>$email,
                             "password"=>password_hash($password, PASSWORD_BCRYPT)
                         );
@@ -26,11 +30,13 @@ class ControladorFormularios{
                             MsgSuccess("El usuario se registro Correctamente");
                             LimpiarCache();
                         }else{
-                            MsgError("Parece que ocurrio un error, intentalo más tarde");
+                            MsgError("$respuesta[1]: $respuesta[2]");
                             LimpiarCache();
                         }
                     }else{
-                        MsgError("Esté email ya está registrado");
+                        $text = 'Esté email ya está registrado';
+                        echo $text;
+                        MsgError($text);
                     }
                 }else{
                     MsgError("Algunos campos contienen caracteres especiales");
@@ -81,7 +87,11 @@ class ControladorFormularios{
     public static function ctrObtenerDatosUser(){
         $tabla = "usuario";
         $columna  = "email";
-        $dato = $_SESSION["emailUser"];
+        if(isset($_SESSION["emailUser"])){
+            $dato = $_SESSION["emailUser"];
+        }else{
+            $dato = null;
+        }
         $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla,$columna,$dato);
         return $respuesta;
     }

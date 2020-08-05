@@ -13,18 +13,18 @@ class ModelosFormularios{
             if($stmt->execute()){
                 return ($stmt->fetchAll());
             }else{
-                return print_r(Conexion::conectar()->errorInfo());
+                return ($stmt->errorInfo());
             }
             $stmt = null;
         }else{
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $columna = :$columna");
 
-            $stmt->bindParam(":".$columna, $datos);
+            $stmt->bindParam(":".$columna, $datos, PDO::PARAM_STR);
 
             if($stmt->execute()){
                 return ($stmt->fetch());
             }else{
-                return print_r(Conexion::conectar()->errorInfo());
+                return ($stmt->errorInfo());
             }
             $stmt = null;
         }
@@ -33,16 +33,18 @@ class ModelosFormularios{
 //?                          Modelos Registrar Usuario                         */
 //* -------------------------------------------------------------------------- */
     public static function mdlRegistrarUsuario($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(name, email, password) VALUES(:name,:email, :password)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(token, name, lastname,password, email) VALUES(:token, :name, :lastname, :password, :email)");
 
+        $stmt->bindParam(":token", $datos['token'], PDO::PARAM_STR);
         $stmt->bindParam(":name", $datos['name'], PDO::PARAM_STR);
+        $stmt->bindParam(":lastname", $datos['lastname'], PDO::PARAM_STR);
         $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
         $stmt->bindParam(":password", $datos['password'], PDO::PARAM_STR);
 
         if($stmt->execute()){
             return "ok";
         }else{
-            return print_r(Conexion::conectar()->errorInfo());
+            return ($stmt->errorInfo());
         }
     }
 

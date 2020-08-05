@@ -2,15 +2,12 @@
     class Conexion{
         public static function conectar(){
             try{
-                $link = new PDO("mysql:host=localhost; dbname=udalv","root","");
+                $link = new PDO("mysql:host=localhost; dbname=bdd_udalv","root","");
                 return $link;
             }
             catch(PDOException $e){
-                print ($e->getMessage());
+                print($e->getMessage());
             }
         }
-        public static function conectarRemote(){
-
-        }
+        
     }
-

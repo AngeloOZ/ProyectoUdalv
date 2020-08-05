@@ -8,8 +8,10 @@
     //         return;
     //     }
     // }
-    // $usuario = ControladorFormularios::ctrObtenerDatosUser();
-    $usuario = array("name"=>"Invitado","email"=>"invitado@invitado.com")
+    $usuario = ControladorFormularios::ctrObtenerDatosUser();
+    if(!$usuario){
+        $usuario = array("name"=>"Invitado","email"=>"invitado@invitado.com","token"=>"","id"=>"");
+    }
 ?> 
 <div class="menu-lateral">
     <div class="datos">
@@ -57,7 +59,7 @@
        <div class="tab visible-tab"><?php require_once "./vistas/modulos/calendario.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/modulos/tareas.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/modulos/mod.php"; ?></div>
-       <div class="tab"><?php require_once "./vistas/modulos/enlaces.php"; ?></div>
+       <div class="tab" id="enlace"><?php require_once "./vistas/modulos/enlaces.php"; ?></div>
 </main>
 <script>
     TabPanel();

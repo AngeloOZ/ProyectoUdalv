@@ -23,15 +23,12 @@ body {
     width: 100%;
     margin: auto;
     height: 600px;
-    /* background-color: #fff; */
     padding: 0 20px;
 }
-
 .information-menu {
     display: none;
     height: inherit;
 }
-
 .ctn-form-login {
     width: 100%;
     height: 90%;
@@ -42,7 +39,6 @@ body {
     border-radius: 8px;
     overflow: hidden;
 }
-
 .options {
     height: 30px;
     border-radius: 25px;
@@ -52,7 +48,6 @@ body {
     align-items: center;
     margin-bottom: 30px;
 }
-
 .button-options {
     background-color: transparent;
     border: 1px solid #fff;
@@ -66,19 +61,16 @@ body {
     margin-right: 5px;
     outline: none;
 }
-
 .active-options {
     background-color: #62CDB9;
     color: white;
     border: 1px solid #62CDB9;
 }
-
 .ctn-form-login h2 {
     color: #fff;
     font-weight: 300;
     text-align: center;
 }
-
 .form-login {
     position: absolute;
     width: 100%;
@@ -87,7 +79,6 @@ body {
     left: 0;
     transition: left 0.4s ease-in-out .1s;
 }
-
 .form-register {
     position: absolute;
     height: 450px;
@@ -231,7 +222,6 @@ body {
     text-decoration: none;
     color: #62CDB9;
 }
-
 /* -------------------------------------------------------------------------- */
 /*                             Estilos del inicio                             */
 /* -------------------------------------------------------------------------- */
@@ -348,7 +338,7 @@ a.opcion{
 .tab{
     width: 100%;
     margin: auto;
-    font-size: 50px;
+    /* font-size: 50px; */
     height: 100%;
     position: absolute;
     left: -100%;
@@ -376,7 +366,329 @@ a.opcion{
 .opcion.active-tab{
     background-color: #339AF0;
 }
+
+/*! -------------------------------------------------------------------------- */
+/*?                         Estilos de modulo enlaces                         */
+/*! -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*?                             Gestor de enlaces                             */
+/* -------------------------------------------------------------------------- */
+.contenedor-links{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 10px;
+}
+/** overla */
+.overlay{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.close-overlay{
+    display: none;
+    position: fixed;
+    font-size: 45px;
+    top: 15px; 
+    right: 19px;
+    color: #fff;
+}
+div.overlay .agregar-link{
+    display: block;
+    height: 400px;
+    visibility: visible;
+    z-index: 1000000;
+    visibility: visible;
+    transition: .4s ease-in 0.5s visibility;
+}
+.add{
+    display: none;
+    background-color: #fff;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+.tab.visible-tab .contenedor-links .view-pc .add{
+    display: block;
+}
+div.overlay .close-overlay{
+    display: block;
+}
+.agregar-link{
+    width: 90%;
+    height: 450px;
+    padding: 20px;
+    border: 1px solid #dfdfdf;
+    background-color: #f1f1f1;
+    display: none;
+    visibility: hidden;
+}
+.title-form{
+    font-family: 'Nunito Sans', sans-serif;
+    color: #000;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.form-agregar-enlace input[type="text"],
+.form-agregar-enlace input[type="url"]{
+    font-family: 'Nunito Sans', sans-serif;
+    border: 5px solid transparent;
+    background-color: #f7f7f9;
+    display: block;
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 35px;
+    outline: none;
+    transition: 0.20s ease-in-out box-shadow 0.10s;
+}
+.form-agregar-enlace input[type="text"]:focus,
+.form-agregar-enlace input[type="url"]:focus{
+    box-shadow: 0 0 0 0.2rem #c6c6c6;
+}
+.group-select{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 45px;
+    width: 100%;
+    margin-bottom: 35px;
+}
+.form-agregar-enlace label{
+    color: #757575;
+    font-weight: 300;
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 15px;
+}
+.form-agregar-enlace select{
+    font-family: 'Nunito Sans', sans-serif;
+    width: 70%;
+    height: 45px;
+    font-size: 16px;
+    padding: 10px;
+}
+.form-agregar-enlace select option{
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+}
+.form-agregar-enlace input[type="submit"]{
+    font-family: 'Nunito Sans', sans-serif;
+    display: block;
+    margin: auto;
+    margin-top: 60px;
+    width: 90%;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #000;
+    border: none;
+}
+/** Listar enlaces */
+.listar-link{
+    width: 100%;
+    height: auto;
+}
+.contenedor-buscador{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.contenedor-buscador form{
+    width: 100%;
+}
+.form-group-search{
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.form-group-search i{
+    position: absolute;
+    top: 11px;
+    right: 24px;
+    font-size: 20px;
+    color: #757575;
+}
+
+.form-group-search input{
+    display: block;
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    font-size: 17px;
+    padding: 0 25px;
+}
+.form-group-search input:focus{
+    box-shadow: 0 0 0 0.2rem  rgba(133, 127, 127, 0.5);
+    /* box-shadow: 0 0 0 0.2rem #007bff40; */
+}
+
+/* -------------------------------------------------------------------------- */
+/*?                          Contenedor enlaces tabla                          */
+/* -------------------------------------------------------------------------- */
+.contenedor-tabla{
+    height: auto;
+    width: 100%;
+    overflow-x: scroll;
+}
+.contenedor-tabla::-webkit-scrollbar{
+    display: none;
+}
+.table{
+    font-family: 'Nunito Sans', sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table thead{
+    background-color: #ffffff;
+    margin-bottom: 200px;
+    border: 2px solid rgba(133, 127, 127, 0.5);
+}
+.table thead th{
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.table tbody tr{
+    background-color: #ffffff;
+    border: 1.5px solid rgba(133, 127, 127, 0.5);
+}
+.table tbody td{
+    font-size: 18px;
+    padding: 10px;
+}
+.link{
+    color: #1d4fac;
+    text-decoration: none;
+}
+.link:hover{
+    text-decoration: underline;
+}
+.link:visited{
+    color: #1d4fac;
+}
+.table tbody td:nth-child(3){
+    font-size: 14px;
+    padding: 0 5px;
+}
+.table tbody td:nth-child(4){
+    padding: 0;
+}
+.table .name-td span{
+    display: block;
+    font-size: 20px;
+    margin-right: 5px;
+    transition: .3s ease-in transform;
+}
+.table .name-td span:hover{
+    transform: scale(1.2);
+}
+.operaciones{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    display: block;
+    line-height: 35px;
+    background-color: violet;
+    height: 35px;
+    width: 35px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 8px;
+    margin: 2px;
+    cursor: pointer;
+}
+.btn i{
+    height: 100%;
+    width: 100%;
+}
+.btn-edit{
+    background-color: #ffc107;
+    border: 1px solid #ffc107;
+}
+.btn-edit:hover{
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+.btn-delete{
+    background-color: #dc3445;
+    border: 1px solid #dc3445;
+}
+.btn-delete:hover{
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* -------------------------------------------------------------------------- */
+/*?                               Seccion iconos                               */
+/* -------------------------------------------------------------------------- */
+.fa-facebook{
+    color: #3b5998;
+}
+.fa-youtube{
+    color: #c4302b;
+}
+.fa-instagram{
+    color: #BA1A5D;
+}
+.fa-bookmark{
+    color: green;
+}
+@media screen and (min-width: 600px){
+    div.overlay .agregar-link{
+        height: 370px;
+        width: 60%;
+        overflow: hidden;
+    }
+    .form-agregar-enlace input[type="submit"]{
+        margin-top: 30px;
+    }
+    .menu-lateral{
+        width: 300px;
+    }
+    body.active-barra .header-inicio,
+    body.active-barra main{
+        transform: translateX(-300px);
+    }
+}
 @media screen and (min-width: 730px) {
+    .tab.visible-tab .contenedor-links .view-pc .add{
+        display: none;
+    }
     .main-menu {
         display: flex;
         height: 100vh;
@@ -475,6 +787,31 @@ a.opcion{
     body.active-barra main{
         transform: translateX(-300px);
     }
+    .contenedor-links{
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
+    .contenedor-tabla{
+        height: 400px;
+        overflow: -moz-hidden-unscrollable;
+        overflow-y: auto;
+    }
+    .add{
+        display: none;
+    } 
+    .view-pc{
+        width: 35%;
+    }
+    .agregar-link{
+        width: 100%;
+        display: block;
+        visibility: visible;
+    }
+    .listar-link{
+        width: 60%;
+        height: 550px;
+    }
 }
 
 @media screen and (min-width: 1000px) {
@@ -501,5 +838,11 @@ a.opcion{
     }
     .btn-registrar {
         margin: 25px auto 30px auto;
+    }
+    .contenedor-links{
+        height: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        overflow: hidden;
     }
 }

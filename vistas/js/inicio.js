@@ -31,3 +31,20 @@ function TabPanel(){
         }
     });
 }
+function AgregarLinkMoblie(){
+    btnAgregar = document.getElementById('btn-add-link');
+    ctnOverlay = document.getElementById('overlay');
+
+    if(btnAgregar){
+        btnAgregar.addEventListener('click', ()=>{
+            ctnOverlay.classList.toggle('overlay');
+        })
+    }
+    if(ctnOverlay){
+        ctnOverlay.addEventListener('click', e=>{
+            if(e.target.classList.contains('fa-times-circle')){
+                ctnOverlay.classList.toggle('overlay')
+            }
+        })
+    }
+}
