@@ -1,0 +1,52 @@
+.contenedor_principal_mood{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.contenedor_registro_mood{
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+.contenedor_registro_mood form{
+    height: 80%;
+    margin:auto;
+    width: 90%;
+    background-color: #202020af;
+}
+.Titulito{
+    color: #ffffff;
+    margin-top: 20px;
+}
+.contenedor_opciones{
+   width: 100%;
+   height: 75%;
+   padding: 0 70px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: flex-start;
+}
+.contenedor_opciones input{
+   display: block;
+}
+.contenedor_grafico_principal{
+    width: 60%;
+}
+.contenedor_registro_mood form input[type="submit"]{
+    background-color: #ffffff;
+    height: 40px;
+    width:60%;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+.contenedor_botones{
+
+}
+.contenedor_grafica{
+
+}
+.circulo{
+
+}
