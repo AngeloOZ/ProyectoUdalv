@@ -51,11 +51,11 @@ class ControladorFormularios{
 //* -------------------------------------------------------------------------- */
     public function ctrIniciarSession(){
         if(isset($_POST["ingresarEmail"])){
-            if(!Seguridad::VerificarToken($_POST["tokenCSRF"])){
-                MsgError("Estas intentando hackear el sitio");
-                LimpiarCache();
-                return;
-            }
+            // if(!Seguridad::VerificarToken($_POST["tokenCSRF"])){
+            //     MsgError("Estas intentando hackear el sitio");
+            //     LimpiarCache();
+            //     return;
+            // }
             $email = $_POST["ingresarEmail"];
             $password = $_POST["ingresarPwd"];
             if(!empty($email) && !empty($password)){
