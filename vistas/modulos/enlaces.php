@@ -5,11 +5,11 @@
         <div class="agregar-link" id="add-link">
             <h3 class="title-form">Agregar Enlace</h3>
             <form action="" id="form-agregar-enlace" class="form-agregar-enlace">
-                <input type="text" name="ingresarNombreEnlace" id="" placeholder="Nombre de enlace" autocomplete="off">
-                <input type="url" name="ingresarUrl" placeholder="Ingrese URL" autocomplete="off">
+                <input type="text" name="ingresarNombreEnlace" id="ingresarNombreEnlace" placeholder="Nombre de enlace" autocomplete="off">
+                <input type="url" name="ingresarUrl" placeholder="Ingrese URL" id="ingresarUrl" autocomplete="off">
                 <div class="group-select">
                     <label for="">Icono</label>
-                    <select name="ingresarIcono" id="icono">
+                    <select name="ingresarIcono" id="ingresarIcono">
                         <option value="fab fa-gitkraken" selected>Default</option>
                         <option value="fab fa-wikipedia-w">Consultas</option>
                         <option value="fab fa-github">Github</option>
@@ -19,8 +19,7 @@
                         <option value="fas fa-bookmark">Marcadores</option>
                     </select>
                 </div>
-                <input type="hidden" value="<?php echo $usuario["token"]?>" name="hiddenTokenUsuario" id="hiddenTokenUsuario">
-                <input type="hidden" value="<?php echo $usuario["id"]?>" name="hiddenIdUsuario" id="hiddenIdUsuario">
+                <input type="hidden" value="" name="hiddenIdLink" id="hiddenIdLink">
                 <input type="submit" value="Guardar Enlace">
             </form>
         </div>

@@ -56,10 +56,10 @@
 </header>
 <main class="contenedor-tab">
        <div class="tab"><?php require_once "./vistas/modulos/usuario.php"; ?></div>
-       <div class="tab visible-tab"><?php require_once "./vistas/modulos/calendario.php"; ?></div>
+       <div class="tab "><?php require_once "./vistas/modulos/calendario.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/modulos/tareas.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/modulos/mod.php"; ?></div>
-       <div class="tab" id="enlace"><?php require_once "./vistas/modulos/enlaces.php"; ?></div>
+       <div class="tab visible-tab" id="enlace"><?php require_once "./vistas/modulos/enlaces.php"; ?></div>
 </main>
 <script>
     TabPanel();

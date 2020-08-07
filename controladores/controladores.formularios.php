@@ -1,6 +1,8 @@
 <?php 
 class ControladorFormularios{
     public $tokenComplement = "Security@#12$20%";
+    public $TokenUser;
+    public $TokenId;
 //* -------------------------------------------------------------------------- */
 //*                      Controlador Registrar registro                      */
 //* -------------------------------------------------------------------------- */
@@ -51,11 +53,11 @@ class ControladorFormularios{
 //* -------------------------------------------------------------------------- */
     public function ctrIniciarSession(){
         if(isset($_POST["ingresarEmail"])){
-            // if(!Seguridad::VerificarToken($_POST["tokenCSRF"])){
-            //     MsgError("Estas intentando hackear el sitio");
-            //     LimpiarCache();
-            //     return;
-            // }
+            if(!Seguridad::VerificarToken($_POST["tokenCSRF"])){
+                MsgError("Error: 500 Parece que hubo un error al conectar con el servidor");
+                LimpiarCache();
+                return;
+            }
             $email = $_POST["ingresarEmail"];
             $password = $_POST["ingresarPwd"];
             if(!empty($email) && !empty($password)){
@@ -64,7 +66,10 @@ class ControladorFormularios{
                 if(!empty($respuesta)){
                     if($email == $respuesta["email"] && password_verify($password,$respuesta["password"])){
                         $_SESSION["validarSession"] = "ok";
-                        $_SESSION["emailUser"] = $respuesta["email"];
+                        $_SESSION["tokenUser"] = $respuesta["token"];
+                        $_SESSION["idUser"] = $respuesta["token"];
+                        $this->TokenUser = $respuesta["id"];
+                        $this->TokenId = $respuesta["id"];
                         header("location: inicio");
                         LimpiarCache();
                     }else{
@@ -86,9 +91,9 @@ class ControladorFormularios{
 //* -------------------------------------------------------------------------- */
     public static function ctrObtenerDatosUser(){
         $tabla = "usuario";
-        $columna  = "email";
-        if(isset($_SESSION["emailUser"])){
-            $dato = $_SESSION["emailUser"];
+        $columna  = "token";
+        if(isset($_SESSION["tokenUser"])){
+            $dato = $_SESSION["tokenUser"];
         }else{
             $dato = null;
         }
