@@ -1,6 +1,8 @@
 <?php 
 class ControladorEnlace{
-    public static function ctrListarEnlace($token, $filtro){
+    public static function ctrListarEnlace($filtro){
+        // session_start();
+        $token = $_SESSION["tokenUser"];
         $tabla = "enlace";
         if($filtro == null){
             $enlaces = ModeloEnalce::mdlListarEnlaces($tabla, $token, null);
@@ -25,11 +27,11 @@ class ControladorEnlace{
             foreach($enlaces as $td){
                 $table.='
                 <tr>
-                    <td>'.($con++).'</td>
+                    <td atributeId="'.$td['id'].'">'.($con++).'</td>
                     <td class="name-td"><span><i class="'.$td['icon'].'"></i></span>'.$td['name'].'</td>
                     <td><a class="link" href="'.$td['link'].'" target="_blank">'.$td['link'].'</a></td>
                     <td class="operaciones">
-                        <div atributeId="'.$td['id'].'" class="btn btn-edit"><i class="fas fa-pencil-alt"></i></div>
+                        <div class="btn btn-edit"><i class="fas fa-pencil-alt"></i></div>
                         <div class="btn btn-delete"><i class="fas fa-trash-alt"></i></div>
                     </td>
                 </tr>
@@ -44,10 +46,15 @@ class ControladorEnlace{
     }
     public function ctrRegistratEnlace(){
         if(isset($_POST["ingresarNombreEnlace"])){
+            // session_start();
             $nombreEnlace = filtrarInput($_POST["ingresarNombreEnlace"]);
             $icono = $_POST["ingresarIcono"];
             $url = filter_var($_POST["ingresarUrl"], FILTER_SANITIZE_URL);
-            $tokens = array("id"=>$_POST["hiddenIdUsuario"], "token" => $_POST["hiddenTokenUsuario"]);
+            $tokens = array(
+                "id" => $_SESSION["idUser"], 
+                "token" => $_SESSION["tokenUser"]
+            );
+
             if(!empty($nombreEnlace) && !empty($icono) && !empty($url) && !empty($tokens)){
                 if(preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚÑñ ,.-_=+%$#@!?¿¡)(]+$/',$nombreEnlace) &&
                    filter_var($url, FILTER_VALIDATE_URL)
@@ -116,20 +123,17 @@ function filtrarInput($text){
     return htmlspecialchars(trim($text),ENT_QUOTES, 'UTF-8');
 }
 if(isset($_POST['operacionEnlace']) && !empty($_POST['operacionEnlace'])){
+    session_start();
     require_once "../modelos/modelos.enlaces.php";
     $operacion = $_POST['operacionEnlace'];
-    $token = $_POST['TokenUserEnlace'];
-    $id = $_POST['idUserEnlace'];
     $filter = null;
-
     if(isset($_POST['FilterSearch'])){
         $filter = $_POST['FilterSearch'];
     }
     
     switch($operacion){
         case 'read':
-            $tabla = ControladorEnlace::ctrListarEnlace($token, $filter);
-            echo $tabla; 
+            echo  ControladorEnlace::ctrListarEnlace($filter);
             break;
         case 'create':
             $add = new ControladorEnlace();
