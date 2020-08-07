@@ -349,10 +349,10 @@ a.opcion{
     background-color: darkblue;
 }
 .tab:nth-child(2){
-    background-color: darkgoldenrod;
+    /* background-color: darkgoldenrod; */
 }
 .tab:nth-child(3){
-    background-color: darksalmon;
+    /* background-color: darksalmon; */
 }
 .tab:nth-child(4){
     background-color: darkviolet;

@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <!-- Links de css locales -->
     <link rel="stylesheet" href="./vistas/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./vistas/css/tareas.css">
     <link rel="stylesheet" href="./vistas/css/sweetalert2.min.css">
     <!-- Link de Fontawesome -->
     <script src="https://kit.fontawesome.com/736596057b.js" crossorigin="anonymous"></script>

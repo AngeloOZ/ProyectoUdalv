@@ -9,5 +9,7 @@
                 print($e->getMessage());
             }
         }
-        
+        public static function conectar2(){
+            
+        }    
     }
