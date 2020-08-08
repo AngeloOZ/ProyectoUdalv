@@ -20,7 +20,7 @@ class ControladorMood{
                     LimpiarCache();
                 }
                 else{
-                    echo "Error $respuesta[1] $respuesta[2]<br>" ;
+                    echo "Error $respuesta[1]: $respuesta[2]<br>";
                     LimpiarCache();
                 }
             }
