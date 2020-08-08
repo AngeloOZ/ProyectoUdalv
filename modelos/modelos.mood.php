@@ -6,6 +6,7 @@ class ModeloMood {
         $stmt->bindParam(":name",$datos["name"], PDO::PARAM_STR);
         $stmt->bindParam(":token",$datos["token_user"], PDO::PARAM_STR);
         $stmt->bindParam(":user",$datos["id_user"], PDO::PARAM_INT);
+        $stmt->bindParam(":dia",$datos["mood_day"], PDO::PARAM_INT);
         if($stmt->execute()){
             return "Ok";
         }
