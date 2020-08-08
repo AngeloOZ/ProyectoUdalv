@@ -4,15 +4,17 @@ window.onload = function(){
 function TabPanelOnloadPage(){
     let opciones = Array.prototype.slice.apply(document.querySelectorAll('.opcion'));
     let panels = Array.prototype.slice.apply(document.querySelectorAll('.tab'));
-    opciones.map(op => op.classList.remove('active-tab'));
-    panels.map(panel => panel.classList.remove('visible-tab'));
-    if(localStorage.getItem("index")){
-        let i = (localStorage.getItem("index")); 
-        opciones[i].classList.add('active-tab');
-        panels[i].classList.add('visible-tab');
-    }else{
-        opciones[1].classList.add('active-tab');
-        panels[1].classList.add('visible-tab');
+    if(opciones && panels){
+        opciones.map(op => op.classList.remove('active-tab'));
+        panels.map(panel => panel.classList.remove('visible-tab'));
+        if(localStorage.getItem("index")){
+            let i = (localStorage.getItem("index")); 
+            opciones[i].classList.add('active-tab');
+            panels[i].classList.add('visible-tab');
+        }else{
+            opciones[1].classList.add('active-tab');
+            panels[1].classList.add('visible-tab');
+        }
     }
 }
 function BarraLateral(){
