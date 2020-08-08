@@ -7,7 +7,7 @@ class ControladorMood{
                 $token = $_SESSION["tokenUser"];
                 $idUser = $_SESSION["idUser"];
                 $estado = $_POST["estadoAnimo"];
-                $fecha = date("Y-M-D");
+                $fecha = date("Y-m-d",);
                 $datos = array(
                     "name"=> $estado,
                     "token_user" =>$token,
