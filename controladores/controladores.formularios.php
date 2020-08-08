@@ -1,8 +1,6 @@
 <?php 
 class ControladorFormularios{
     public $tokenComplement = "Security@#12$20%";
-    public $TokenUser;
-    public $TokenId;
 //* -------------------------------------------------------------------------- */
 //*                      Controlador Registrar registro                      */
 //* -------------------------------------------------------------------------- */
@@ -67,9 +65,8 @@ class ControladorFormularios{
                     if($email == $respuesta["email"] && password_verify($password,$respuesta["password"])){
                         $_SESSION["validarSession"] = "ok";
                         $_SESSION["tokenUser"] = $respuesta["token"];
-                        $_SESSION["idUser"] = $respuesta["token"];
-                        $this->TokenUser = $respuesta["id"];
-                        $this->TokenId = $respuesta["id"];
+                        $_SESSION["idUser"] = $respuesta["id"];
+  
                         header("location: inicio");
                         LimpiarCache();
                     }else{
