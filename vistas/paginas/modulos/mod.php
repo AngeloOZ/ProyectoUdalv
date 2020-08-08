@@ -51,11 +51,11 @@
         </div>
         <div class="contenedor_grafica">
             <div class="circulo">
-                <div id="chartdiv"></div>
+                <!-- <div id="chartdiv"></div>
                 <script src="core.js"></script>
                 <script src="charts.js"></script>
                 <script src="animated.js"></script>
-                <script src="grafi.js"></script>
+                <script src="grafi.js"></script> -->
             </div>
 
         </div>

@@ -1,6 +1,8 @@
 <?php 
+define("SECRET_TOKEN","Security@#12$20%");
 class ControladorFormularios{
     public $tokenComplement = "Security@#12$20%";
+    public $emailRegister;
 //* -------------------------------------------------------------------------- */
 //*                      Controlador Registrar registro                      */
 //* -------------------------------------------------------------------------- */
@@ -97,6 +99,17 @@ class ControladorFormularios{
         $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla,$columna,$dato);
         return $respuesta;
     }
+    public function ctrAjaxValidarEmail(){
+        $tabla = "usuario";
+        $columna = "email";
+        $dato = $this->emailRegister;
+        $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla, $columna, $dato);
+        if(empty($respuesta)){
+            echo "disponible";
+        }else{
+            echo "ocupado";
+        }
+    }
 }
 
 //todo -------------------------------------------------------------------------- */
@@ -130,4 +143,12 @@ function LimpiarCache(){
             window.history.replaceState(null,null, window.location.href);
         }
     </script>';
+}
+
+
+if(isset($_POST["validarEmail"]) && !empty($_POST["validarEmail"])){
+    require_once "../modelos/modelos.login.php";
+    $valEmail = new ControladorFormularios();
+    $valEmail ->emailRegister = $_POST["validarEmail"];
+    $valEmail->ctrAjaxValidarEmail();
 }

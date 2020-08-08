@@ -14,7 +14,7 @@
             <h1>Planea más facíl, planea más rápido</h1>
             <div class="animation">
                 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                <lottie-player src="./vistas/js/lf30_editor_nnvF60.json"  speed="1" loop  autoplay></lottie-player>
+                <lottie-player src="./vistas/img/lf30_editor_nnvF60.json"  speed="1" loop  autoplay></lottie-player>
             </div>
             <div class="ctn-btn">
                 <a href="#" onclick="RegistrarUser()" class="btn-registrar2">Registrate</a>
