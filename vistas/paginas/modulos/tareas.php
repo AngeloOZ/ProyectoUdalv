@@ -22,5 +22,5 @@
       </div>
 </div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<a href="#" class="float" target="_blank">
+<a href="./ProyectoUdalv/vistas/paginas/modulos/añadir_tarea.php" class="float" target="_blank">
 <i id="add" class="fas fa-plus"></i></a>
