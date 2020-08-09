@@ -51,9 +51,9 @@
         </div>
         <script src="./vistas/js/ajaxmood.js"></script>
         <div class="contenedor_grafica">
-            <div class="circulo">
+            <div class="circulo"> 
                 <div id="chartdiv"></div>
-                <script src="./vistas/js/core.js"></script>
+                <script src="vistas/js/core.js"></script>
                 <script src="./vistas/js/charts.js"></script>
                 <script src="./vistas/js/animated.js"></script>
                 <script src="./vistas/js/grafi.js"></script>
