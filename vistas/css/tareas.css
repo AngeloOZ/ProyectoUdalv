@@ -1,11 +1,11 @@
 
-.notas{
+.tasks{
   margin: 50px auto;
   width: 90%;
 
 }
 
-.notas .nota{
+.tasks .task{
   margin: 30px 10px;
   padding: 20px;
   border: solid 3px #DE8FC3;
@@ -14,25 +14,25 @@
   overflow: hidden;
   position: relative;
 }
-.notas h3{
+.tasks .th3{
   font-size: 30px;
   color: #DE8FC3;
   text-align: left;
 }
 
 
-.nota a{
+.task a{
   padding-top: 10px;
   padding-left: 80%;
   text-transform: uppercase;
   display: inline-block;
   font-weight: bold;
   line-height: 1px;
-  margin-left: : 0;
+  margin-left: 0;
   margin-top: 20px;
   color: #7766BB;
 }
-.nota #clock{
+.task #clock{
   color: #fff;
 }
 .fecha{
