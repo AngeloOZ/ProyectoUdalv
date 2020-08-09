@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <!-- Links de css locales -->
     <link rel="stylesheet" href="./vistas/css/style.css">
-    <link rel="stylesheet" type="text/css" href="./vistas/css/tareas.css">
     <link rel="stylesheet" type="text/css" href="./vistas/css/notas.css">
+    <link rel="stylesheet" type="text/css" href="./vistas/css/tareas.css">    
     <link rel="stylesheet" type="text/css" href="./vistas/css/mood.css">
     <link rel="stylesheet" type="text/css" href="./vistas/css/GRAFI.css">
 
