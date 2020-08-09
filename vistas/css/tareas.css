@@ -1,11 +1,11 @@
 
-.notas{
+.notas2{
   margin: 50px auto;
   width: 90%;
 
 }
 
-.notas .nota{
+.notas2 .nota2{
   margin: 30px 10px;
   padding: 20px;
   border: solid 3px #DE8FC3;
@@ -14,14 +14,14 @@
   overflow: hidden;
   position: relative;
 }
-.notas h3{
+.notas2 h3{
   font-size: 30px;
   color: #DE8FC3;
   text-align: left;
 }
 
 
-.nota a{
+.nota2 a{
   padding-top: 10px;
   padding-left: 80%;
   text-transform: uppercase;
@@ -32,7 +32,7 @@
   margin-top: 20px;
   color: #7766BB;
 }
-.nota #clock{
+.nota2 #clock{
   color: #fff;
 }
 .fecha{
