@@ -16,11 +16,11 @@
   height: 300px;
   background-color: #171717;
 }
-.notas .nh3{
+.notas h3{
   color: #DE8FC3;
   text-align: center;
 }
-.notas #na{
+.notas a{
   padding: 10px 0px;
   text-transform: uppercase;
   display: inline-block;
@@ -28,7 +28,7 @@
   line-height: 1px;
   width: 200px;
 }
-.notas .ph3{
+.notas p{
   height: 170px;
   overflow: hidden;
   color: #fff;
@@ -37,7 +37,7 @@
 }
 
 
-.nota #na{
+.nota a{
   text-align: center;
   margin-top: 20px;
   color: #7766BB;
