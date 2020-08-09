@@ -1,58 +1,21 @@
+<div class="note-box">
+      <form action="#" method="post">
+        <input type="text" placeholder="Nombre" name="nombre">
+        <textarea class="descripcion" name="descripcion" rows="8" cols="71" placeholder="Descripcion"></textarea>
+        <input type="submit" value="Guardar">
+        <?php 
+          $agregar = new ControladorNotas();
+          $agregar->ctrAgregarNotas();
+        ?>
+      </form>
+</div>  
+<!-- <a href="#" class="float" target="_blank"> -->
+<!-- <i id="add" class="fas fa-undo-alt"></i>  -->
 <div class="notas">
-      <div class="nota">
-        <h3>Lorem ipsum dolor sit </h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-          
-        </p>
-        <a href="#" target="_blank">Leer mas<i class="fas fa-angle-double-right"></i></a>
-      </div>
-
-      <div class="nota">
-        <h3>Lorem ipsum dolor sit </h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-        </p>
-        <a href="#" target="_blank">Leer mas<i class="fas fa-angle-double-right"></i></a>
-      </div>
-      <div class="nota">
-        <h3>Lorem ipsum dolor sit </h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-        </p>
-        <a href="#" target="_blank">Leer mas<i class="fas fa-angle-double-right"></i></a>
-      </div>
-      <div class="nota">
-        <h3>Lorem ipsum dolor sit </h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-        </p>
-        <a href="#" target="_blank">Leer mas<i class="fas fa-angle-double-right"></i></a>
-      </div>
+      <?php 
+        $notas = ControladorNotas::ctrListarNotas(null);
+        echo $notas;
+      ?>
 </div>
-<a href="calendario.php" class="float" target="_blank">
+<a href="calendario" class="float" target="_blank">
 <i id="add" class="fas fa-plus"></i></a>
