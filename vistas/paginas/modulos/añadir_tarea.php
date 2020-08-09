@@ -10,6 +10,5 @@
         <input type="submit" value="Guardar">
       </form>
 </div>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <a href="#" class="float" target="_blank">
     <i id="add" class="fas fa-undo-alt"></i>
