@@ -71,12 +71,6 @@
 </script>
 <style>
 
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
 
   #loading {
     display: none;
@@ -86,7 +80,7 @@
   }
 
   #calendar {
-      height: 450px;
+      height: 480px;
     width: 1200px;
     margin: 0 auto;
   }
