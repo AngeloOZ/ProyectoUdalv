@@ -1,9 +1,9 @@
 <?php
 require_once "conexion.php";
 
-class ModeloNotas{
+class ModeloTareas{
     
-    public static function mdlListarNota($tabla, $token, $filtro){
+    public static function mdlListarTarea($tabla, $token, $filtro){
         if($filtro == null){
             $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE token_user = :token ORDER BY 1 desc");
 
@@ -29,10 +29,12 @@ class ModeloNotas{
         }
     }
     
-    public static function mdlAgregarNota($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(description, token_user,id_user) VALUES(:description, :token, :id)");
-
-        $stmt->bindParam(":description",$datos["descripcion"],PDO::PARAM_STR);
+    public static function mdlAgregarTarea($tabla, $datos){
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(name_task, description_task, state_task, token_user,id_user) VALUES(:name_task,:description_task, :state_task, :token, :id)");
+        
+        $stmt->bindParam(":name_task",$datos["name_task"],PDO::PARAM_STR);
+        $stmt->bindParam(":description_task",$datos["descripcion_task"],PDO::PARAM_STR);
+        $stmt->bindParam(":state_task",$datos["state_task"],PDO::PARAM_STR);
         $stmt->bindParam(":token",$datos["token"],PDO::PARAM_STR);
         $stmt->bindParam(":id",$datos["id"],PDO::PARAM_INT);
 
@@ -47,8 +49,10 @@ class ModeloNotas{
 
     public static function mdlActualizarNota($tabla, $datos){
         try{
-            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :descripcion WHERE id = :id");
-            $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STMT);
+            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name_task = :name_task, descripcion_task = :descripcion_task, state_task = :state_task  WHERE id = :id");
+            $stmt->bindParam(":name_task", $datos["name_task"], PDO::PARAM_STMT);
+            $stmt->bindParam(":descripcion_task", $datos["descripcion_task"], PDO::PARAM_STMT);
+            $stmt->bindParam(":state_task", $datos["state_task"], PDO::PARAM_STMT);
             $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
             if($stmt->execute()){
                 return "ok";
