@@ -138,7 +138,7 @@ function ValidarFormularioRegistro(){
                 let xhr;
                 if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
                 else xhr = new ActiveXObject("Microsoft.XMLHTTP");
-                xhr.open('POST', 'ajax/ajax.controlador.php');
+                xhr.open('POST', 'controladores/controladores.formularios.php');
                 xhr.addEventListener('load', ()=>{
                     resultado = (xhr.response);
                     if(resultado ==  "disponible"){

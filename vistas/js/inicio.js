@@ -1,3 +1,22 @@
+window.onload = function(){
+    TabPanelOnloadPage();
+}
+function TabPanelOnloadPage(){
+    let opciones = Array.prototype.slice.apply(document.querySelectorAll('.opcion'));
+    let panels = Array.prototype.slice.apply(document.querySelectorAll('.tab'));
+    if(opciones && panels){
+        opciones.map(op => op.classList.remove('active-tab'));
+        panels.map(panel => panel.classList.remove('visible-tab'));
+        if(localStorage.getItem("index")){
+            let i = (localStorage.getItem("index")); 
+            opciones[i].classList.add('active-tab');
+            panels[i].classList.add('visible-tab');
+        }else{
+            opciones[1].classList.add('active-tab');
+            panels[1].classList.add('visible-tab');
+        }
+    }
+}
 function BarraLateral(){
     user = document.getElementById("user");
     body = document.querySelector('body');
@@ -16,13 +35,13 @@ function BarraLateral(){
     }
 }
 function TabPanel(){
+    let ctnPanel = document.getElementById("tabs");
     let opciones = Array.prototype.slice.apply(document.querySelectorAll('.opcion'));
     let panels = Array.prototype.slice.apply(document.querySelectorAll('.tab'));
-    let ctnPanel = document.getElementById("tabs");
-
     ctnPanel.addEventListener('click', e => {
         if(e.target.tagName == 'DIV'){
             let i = opciones.indexOf(e.target);
+            localStorage.setItem("index",i);
             opciones.map(op => op.classList.remove('active-tab'));
             opciones[i].classList.add('active-tab');
             panels.map(panel => panel.classList.remove('visible-tab'));

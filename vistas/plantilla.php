@@ -30,6 +30,7 @@
         if(isset($_GET['pagina'])){
             if($_GET['pagina'] == 'login' ||
                $_GET['pagina'] == 'inicio' ||
+               $_GET['pagina'] == 'prueba' ||
                $_GET['pagina'] == 'salir'
             ){
                 include "paginas/".$_GET['pagina'].".php";
