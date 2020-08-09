@@ -36,26 +36,27 @@
     <div class="contenedor_grafico_principal">
         <div class="contenedor_botones">
 
-            <a href="#" class="btngrafica">
-                <span> Semanal 1
+            <a id="boton_semanal" href="#" class="btngrafica">
+                <span> Semanal <i class="fas fa-calendar-week"></i>
                 </span>
             </a>
-            <a href="#" class="btngrafica">
-                <span> Mensual
+            <a id="boton_mensual" href="#" class="btngrafica">
+                <span> Mensual <i class="fas fa-calendar-alt"></i>
                 </span>
             </a>
-            <a href="#" class="btngrafica">
-                <span> Todos
+            <a id="boton_todo" href="#" class="btngrafica">
+                <span> Todos <i class="fas fa-border-all"></i>
                 </span>
             </a>
         </div>
+        <script src="./vistas/js/ajaxmood.js"></script>
         <div class="contenedor_grafica">
             <div class="circulo">
                 <div id="chartdiv"></div>
-                <script src="core.js"></script>
-                <script src="charts.js"></script>
-                <script src="animated.js"></script>
-                <script src="grafi.js"></script>
+                <script src="./vistas/js/core.js"></script>
+                <script src="./vistas/js/charts.js"></script>
+                <script src="./vistas/js/animated.js"></script>
+                <script src="./vistas/js/grafi.js"></script>
             </div>
 
         </div>

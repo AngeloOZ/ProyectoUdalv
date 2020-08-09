@@ -15,4 +15,19 @@ class ModeloMood {
             return $stmt->errorInfo();
         }
     }
+    public static function mdlMostrarEstado($tabla, $token){
+        
+            $stmt = Conexion::conectar()->prepare("SELECT name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token GROUP BY name");
+
+            $stmt->bindParam(":token", $token, PDO::PARAM_STR);
+    
+            if($stmt->execute()){
+                return $stmt->fetchAll();
+            }else{
+                return $stmt->errorInfo();
+            }
+            $stmt = null;
+        
+    
+    }
 }
