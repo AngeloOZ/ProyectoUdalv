@@ -1,3 +1,6 @@
+<head>
+<link rel="stylesheet" type="text/css" href="./vistas/css/tareas.css">
+</head>
 <div class="tasks">
       <div class="task">
         <h3 class="th3">Lorem ipsum dolor sit </h3>
