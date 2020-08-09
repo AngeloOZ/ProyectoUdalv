@@ -59,7 +59,7 @@
        <div class="tab"><?php require_once "./vistas/paginas/modulos/usuario.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/paginas/modulos/calendario.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/paginas/modulos/tareas.php"; ?></div>
-       <div class="tab visible-tab"><?php require_once "./vistas/paginas/modulos/notas.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/paginas/modulos/notas.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/paginas/modulos/mod.php"; ?></div>
        <div class="tab"><?php require_once "./vistas/paginas/modulos/enlaces.php"; ?></div>
 </main>
