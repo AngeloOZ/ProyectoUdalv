@@ -1,5 +1,5 @@
 window.onload = function(){
-    // TabPanelOnloadPage();
+    TabPanelOnloadPage();
 }
 function TabPanelOnloadPage(){
     let opciones = Array.prototype.slice.apply(document.querySelectorAll('.opcion'));
