@@ -21,9 +21,22 @@ CtnTabla.addEventListener('click', e =>{
         CargarDatosInput(tr);
              
     }else if(e.target.classList.contains('fa-trash-alt')){
-        const tr = e.target.parentElement.parentElement.parentElement;
-        const idLink = tr.children[0].getAttribute("atributeid");
-        alert(idLink);
+        Swal.fire({
+            title: 'Está Seguro?',
+            text: "Una vez borrado no puede revertir la acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, Borralo!'
+          }).then((result) => {
+            if (result.value) {
+                const tr = e.target.parentElement.parentElement.parentElement;
+                const idLink = tr.children[0].getAttribute("atributeid");
+                EliminarEnlace(idLink)
+            }
+          })
     }
 
 })
@@ -36,7 +49,7 @@ inputSearch.addEventListener('keyup',e=>{
 });
 FormAddLink.addEventListener('submit', e=>{
     e.preventDefault();
-    AgregarEnlace();
+    AgregarEditarEnlace();
     ListarEnlaces();
 });
 
@@ -70,7 +83,6 @@ function ListarEnlacesFiltrados(valor){
 
     xhr.open('POST', 'controladores/controlador.enlaces.php');
     xhr.addEventListener('load', ()=>{
-        // const ContenedorTabla = document.getElementById('contenedor-tabla');
         resultado = (xhr.response);
         $("#contenedor-tabla").html(resultado);
     })
@@ -78,22 +90,54 @@ function ListarEnlacesFiltrados(valor){
 }
 function AgregarEditarEnlace(){
     let operacion;
-    (bandEditar)? operacion = 'update' :operacion = 'create';
-    alert(operacion);        
+    if(bandEditar)operacion = 'update';
+    else operacion = 'create';
+
     let datos = new FormData(FormAddLink);
     datos.append("operacionEnlace",operacion);
     let xhr;
     if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
     else xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    xhr.open('POST', 'controladores/controlador.enlaces.php');
+    xhr.addEventListener('load', ()=>{
+        resultado = JSON.parse(xhr.response);
+        Swal.fire({
+            icon: resultado["RespType"],
+            title: resultado["sms2"],
+            text: resultado["sms"],
+            showConfirmButton: false,
+            timer: 2500,
+        })
+        FormAddLink.reset();
+        ListarEnlaces();
+    })
+    xhr.send(datos);
+    if(bandEditar) bandEditar = false;
+}
+function EliminarEnlace(idEnlace){
+    let operacion = "delete";
+    let datos = new FormData();
+    datos.append("idEnlaceDelete",idEnlace);
+    datos.append("operacionEnlace",operacion);
+
+    let xhr;
+    if(window.XMLHttpRequest)
+        xhr = new XMLHttpRequest();
+    else
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
 
     xhr.open('POST', 'controladores/controlador.enlaces.php');
     xhr.addEventListener('load', ()=>{
-        resultado = (xhr.response);
-        console.log(resultado);
-        FormAddLink.reset();
-        ListarEnlaces("");
-        if(bandEditar) bandEditar = false;
-    })
+        resultado = JSON.parse(xhr.response);
+        Swal.fire({
+            icon: resultado["RespType"],
+            title: resultado["sms2"],
+            text: resultado["sms"],
+            showConfirmButton: false,
+            timer: 2500,
+        });
+        ListarEnlaces();
+    });
     xhr.send(datos);
 }
 function CargarDatosInput(tr){

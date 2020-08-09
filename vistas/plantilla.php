@@ -14,6 +14,9 @@
     <!-- Links de css locales -->
     <link rel="stylesheet" href="./vistas/css/style.css">
     <link rel="stylesheet" type="text/css" href="./vistas/css/tareas.css">
+    <link rel="stylesheet" type="text/css" href="./vistas/css/mood.css">
+    
+
     <link rel="stylesheet" href="./vistas/css/sweetalert2.min.css">
     <!-- Link de Fontawesome -->
     <script src="https://kit.fontawesome.com/736596057b.js" crossorigin="anonymous"></script>
@@ -27,6 +30,7 @@
         if(isset($_GET['pagina'])){
             if($_GET['pagina'] == 'login' ||
                $_GET['pagina'] == 'inicio' ||
+               $_GET['pagina'] == 'prueba' ||
                $_GET['pagina'] == 'salir'
             ){
                 include "paginas/".$_GET['pagina'].".php";

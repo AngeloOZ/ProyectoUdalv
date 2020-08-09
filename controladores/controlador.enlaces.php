@@ -1,7 +1,6 @@
 <?php 
 class ControladorEnlace{
     public static function ctrListarEnlace($filtro){
-        // session_start();
         $token = $_SESSION["tokenUser"];
         $tabla = "enlace";
         if($filtro == null){
@@ -27,7 +26,7 @@ class ControladorEnlace{
             foreach($enlaces as $td){
                 $table.='
                 <tr>
-                    <td atributeId="'.$td['id'].'">'.($con++).'</td>
+                    <td atributeId="'.Seguridad::encryption($td['id']).'">'.($con++).'</td>
                     <td class="name-td"><span><i class="'.$td['icon'].'"></i></span>'.$td['name'].'</td>
                     <td><a class="link" href="'.$td['link'].'" target="_blank">'.$td['link'].'</a></td>
                     <td class="operaciones">
@@ -46,7 +45,6 @@ class ControladorEnlace{
     }
     public function ctrRegistratEnlace(){
         if(isset($_POST["ingresarNombreEnlace"])){
-            // session_start();
             $nombreEnlace = filtrarInput($_POST["ingresarNombreEnlace"]);
             $icono = $_POST["ingresarIcono"];
             $url = filter_var($_POST["ingresarUrl"], FILTER_SANITIZE_URL);
@@ -69,15 +67,16 @@ class ControladorEnlace{
                     );
                     $respuesta = ModeloEnalce::mdlRegistrarEnlace($tabla, $datos);
                     if($respuesta == "ok"){
-                        echo "Se registro el enlace correctamente";
+                        AlertaSuccess("Se registro el enlace correctamente","Registrado!");
                     }else{
-                        echo "$respuesta[0]: $respuesta[1]: $respuesta[2]";
+                        $error = "Hubo errores de Conexión: $respuesta[1]: $respuesta[2]";
+                        AlertaError($error);
                     }
                 }else{
-                    echo "Algunos caracteres especiales no son permitidos (<, >, /, |, \)";
+                    AlertaError("Algunos caracteres especiales no son permitidos (<, >, /, |, \)");
                 }
             }else{
-                echo "Todos los campos son requeridos";
+                AlertaError("Todos los campos son requeridos");
             }   
         }
     }
@@ -86,47 +85,74 @@ class ControladorEnlace{
             $nombreEnlace = filtrarInput($_POST["ingresarNombreEnlace"]);
             $icono = $_POST["ingresarIcono"];
             $url = filter_var($_POST["ingresarUrl"], FILTER_SANITIZE_URL);
-            $tokens = array("idEnlace"=>$_POST["ingresarIdEnlace"], "token" => $_POST["ingresarTokenEnlace"], "idUser"=>$_POST["ingresarIdUser"]);
-            if(!empty($nombreEnlace) && !empty($icono) && !empty($url) && !empty($tokens)){
-                if(preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚÑñ ,.-_=+%$#@!?¿¡)(]+$/',$nombreEnlace) &&
-                   filter_var($url, FILTER_VALIDATE_URL)
+            $idEnlace = Seguridad::decryption($_POST["hiddenIdLink"]);
+            if(!empty($nombreEnlace) && !empty($icono) && !empty($url) && !empty($idEnlace)){
+                if(preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚÑñ ,.-_=+%$#@!?¿¡)(]+$/',$nombreEnlace) && filter_var($url, FILTER_VALIDATE_URL)
                 ){
-                    $tabla = "enlaces";
-                    $comprobacionDatos = ModeloEnalce::mdlSelecionarEnlaceEspecifico($tabla,$tokens);
-                    if(!empty($comprobacionDatos)){
-                        $datos = array(
-                            "name" => $nombreEnlace, 
-                            "icon" => $icono,
-                            "link" => $url,
-                            "id_user" => $tokens["idUser"],
-                            "token_user" => $tokens["token"]
-                        );
+                    $tabla = "enlace";
+                    $token = $_SESSION["tokenUser"];
+                    $comprobacionDatos = ModeloEnalce::mdlSelecionarEnlaceEspecifico($tabla,$token,$idEnlace);
+                    $datos = array(
+                        "id" => $idEnlace,
+                        "name" => $nombreEnlace, 
+                        "icon" => $icono,
+                        "link" => $url,
+                        "token_user" => $token
+                    );
+                    if($comprobacionDatos["resp"] == "ok" && !empty($comprobacionDatos["consulta"])){
                         $respuesta = ModeloEnalce::mdlActualizarEnalce($tabla, $datos);
                         if($respuesta == "ok"){
-                            MsgSuccess("Enlace registrado exitosamente");
+                            AlertaSuccess("Su enlace fue actualizado correctamente","Actualizado!");
                         }else{
-                            MsgError("$respuesta[1]: $respuesta[2]");
+                            $error = "Hubo errores de conexion: $respuesta[1]: $respuesta[2]";
+                            AlertaError($error);
                         }
                     }else{
-                        MsgError("Ups parece que hubo un error, intentalo más tarde");
+                        AlertaError("Parece que hubo un error, intentalo más tarde");
                     }
                 }else{
-                    MsgError("Algunos caracteres especiales no son permitidos (<, >, /, |, \)");
+                    AlertaError("Algunos caracteres especiales no son permitidos (<, >, /, |, \)");
                 }
             }else{
-                MsgError("Todos los campos son requeridos");
+                AlertaError("Todos los campos son requeridos");
             }   
+        }
+    }
+    public function ctrEliminarEnlace(){
+        if(isset($_POST["idEnlaceDelete"])){
+            $tabla = "enlace";
+            $id = Seguridad::decryption($_POST["idEnlaceDelete"]);
+            $respuesta = ModeloEnalce::mdlEliminarEnlace($tabla, $id);
+            if($respuesta == "ok"){
+                AlertaSuccess("Su enlace ha sido eliminado","Eliminado!");
+            }else{
+                $error = "Hubo errores de conexion: $respuesta[1]: $respuesta[2]";
+                AlertaError($error);
+            }
         }
     }
 }
 function filtrarInput($text){
     return htmlspecialchars(trim($text),ENT_QUOTES, 'UTF-8');
 }
+function AlertaError($sms){
+    $resp = array("RespType"=>"error","sms"=>$sms, "sms2"=>"Oops...");
+    echo json_encode($resp);
+}
+function AlertaSuccess($sms, $sms2){
+    $resp = array("RespType"=>"success","sms"=>$sms, "sms2"=>$sms2);
+    echo json_encode($resp);
+}
+
+
 if(isset($_POST['operacionEnlace']) && !empty($_POST['operacionEnlace'])){
     session_start();
     require_once "../modelos/modelos.enlaces.php";
+    require_once "controlador.security.php";
+    
     $operacion = $_POST['operacionEnlace'];
     $filter = null;
+
     if(isset($_POST['FilterSearch'])){
         $filter = $_POST['FilterSearch'];
     }
@@ -140,10 +166,12 @@ if(isset($_POST['operacionEnlace']) && !empty($_POST['operacionEnlace'])){
             $add->ctrRegistratEnlace();
             break;
         case 'update':
-            echo 'papita';
+            $update = new ControladorEnlace();
+            $update->ctrEditarEnlace();
             break;
         case 'delete':
-            echo 'papita';
+            $delete = new ControladorEnlace();
+            $delete->ctrEliminarEnlace();
             break;
     }       
 }

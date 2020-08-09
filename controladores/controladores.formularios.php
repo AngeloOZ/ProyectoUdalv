@@ -1,8 +1,8 @@
 <?php 
+define("SECRET_TOKEN","Security@#12$20%");
 class ControladorFormularios{
     public $tokenComplement = "Security@#12$20%";
-    public $TokenUser;
-    public $TokenId;
+    public $emailRegister;
 //* -------------------------------------------------------------------------- */
 //*                      Controlador Registrar registro                      */
 //* -------------------------------------------------------------------------- */
@@ -67,9 +67,8 @@ class ControladorFormularios{
                     if($email == $respuesta["email"] && password_verify($password,$respuesta["password"])){
                         $_SESSION["validarSession"] = "ok";
                         $_SESSION["tokenUser"] = $respuesta["token"];
-                        $_SESSION["idUser"] = $respuesta["token"];
-                        $this->TokenUser = $respuesta["id"];
-                        $this->TokenId = $respuesta["id"];
+                        $_SESSION["idUser"] = $respuesta["id"];
+  
                         header("location: inicio");
                         LimpiarCache();
                     }else{
@@ -99,6 +98,17 @@ class ControladorFormularios{
         }
         $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla,$columna,$dato);
         return $respuesta;
+    }
+    public function ctrAjaxValidarEmail(){
+        $tabla = "usuario";
+        $columna = "email";
+        $dato = $this->emailRegister;
+        $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla, $columna, $dato);
+        if(empty($respuesta)){
+            echo "disponible";
+        }else{
+            echo "ocupado";
+        }
     }
 }
 
@@ -133,4 +143,12 @@ function LimpiarCache(){
             window.history.replaceState(null,null, window.location.href);
         }
     </script>';
+}
+
+
+if(isset($_POST["validarEmail"]) && !empty($_POST["validarEmail"])){
+    require_once "../modelos/modelos.login.php";
+    $valEmail = new ControladorFormularios();
+    $valEmail ->emailRegister = $_POST["validarEmail"];
+    $valEmail->ctrAjaxValidarEmail();
 }

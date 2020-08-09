@@ -71,17 +71,20 @@ class ModeloEnalce{
             return ($stmt->errorInfo());
         }
     }
-    public static function mdlSelecionarEnlaceEspecifico($tabla, $tokens){
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :idEnlace AND token_user = :token AND id_user = :idUser");
+    public static function mdlSelecionarEnlaceEspecifico($tabla, $token, $idLink){
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :idEnlace AND token_user = :token");
 
-        $stmt->bindParam(":idEnlace", $tokens["idEnlace"], PDO::PARAM_INT);
-        $stmt->bindParam(":token", $tokens["token"], PDO::PARAM_INT);
-        $stmt->bindParam(":idUser", $tokens["idUser"], PDO::PARAM_INT);
+        $stmt->bindParam(":idEnlace", $idLink, PDO::PARAM_STR);
+        $stmt->bindParam(":token", $token, PDO::PARAM_INT);
 
         if($stmt->execute()){
-            return $stmt->fetch();
+            $cons = $stmt->fetch();
+            $datos = array("resp"=>"ok","consulta"=>$cons);
+            return $datos;
         }else{
-            return $stmt->errorInfo();
+            $datos = array("resp"=>"error","errorInfo"=>$stmt->errorInfo());
+            return $datos;
         }
+        $stmt = null;   
     }
 }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
@@ -76,26 +77,28 @@
                         </h2>
                         <div class="contenedor_opciones">
                             <div class="form-group-radios">
-                                <input type="radio" name="estadoAnimo" value="Muy Bien" id="estadoMuyBien">
+                                <input type="radio" name="estadoAnimo" id="estadoMuyBien">
                                 <label class="label" for="estadoMuyBien"><span>Muy Bien</span><img src="./img/Emoji svg/1 muyBueno (2).svg" alt=""></label>
                             </div>
                             <div class="form-group-radios">
-                                <input type="radio" name="estadoAnimo" value="Bien" id="estadoBien">
+                                <input type="radio" name="estadoAnimo" id="estadoBien">
                                 <label class="label" for="estadoBien"><span>Bien</span><img src="./img/Emoji svg/2 bueno (2).svg" alt=""></label>
                             </div>
                             <div class="form-group-radios">
-                                <input type="radio" name="estadoAnimo" value="Regular" id="estadoRegular">
+                                <input type="radio" name="estadoAnimo" id="estadoRegular">
                                 <label class="label" for="estadoRegular"><span>Regular</span><img src="./img/Emoji svg/3 regular (2).svg" alt=""></label>
                             </div>
                             <div class="form-group-radios">
-                                <input type="radio" name="estadoAnimo" value="Malo" id="estadoMalo">
+                                <input type="radio" name="estadoAnimo" id="estadoMalo">
                                 <label class="label" for="estadoMalo"><span>Malo</span><img src="./img/Emoji svg/4 malo (2).svg" alt=""></label>
                             </div>
                             <div class="form-group-radios">
-                                <input type="radio" name="estadoAnimo" value="Muy Malo" id="estadoMuyMalo">
+                                <input type="radio" name="estadoAnimo" id="estadoMuyMalo">
                                 <label class="label" for="estadoMuyMalo"><span>Muy Malo</span><img src="./img/Emoji svg/5 muyMaloV2 (2).svg" alt=""></label>
                             </div>
                         </div>
+                        <input type="hidden" name="tokenUserMode">
+                        <input type="hidden" name="idUser">
                         <input type="submit" value="Guardar">
                     </form>
                 </div>

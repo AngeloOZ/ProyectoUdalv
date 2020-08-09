@@ -1,17 +1,14 @@
 <?php 
-    // if(!isset($_SESSION["validarSession"])){
-    //     header("location: login");
-    //     return;
-    // }else{
-    //     if($_SESSION["validarSession"] != "ok"){
-    //         header("location: login");
-    //         return;
-    //     }
-    // }
-    $usuario = ControladorFormularios::ctrObtenerDatosUser();
-    if(!$usuario){
-        $usuario = array("name"=>"Invitado","email"=>"invitado@invitado.com","token"=>"","id"=>"");
+    if(!isset($_SESSION["validarSession"])){
+        header("location: login");
+        return;
+    }else{
+        if($_SESSION["validarSession"] != "ok"){
+            header("location: login");
+            return;
+        }
     }
+    $usuario = ControladorFormularios::ctrObtenerDatosUser();
 ?> 
 <div class="menu-lateral">
     <div class="datos">
@@ -31,6 +28,10 @@
         <div class="opcion">
             <span class="icono-opcion"><i class="fas fa-tasks"></i></i></span>
             <span class="texto-opcion">Tareas</span>
+        </div>
+        <div class="opcion">
+            <span class="icono-opcion"><i class="fas fa-sticky-note"></i></span>
+            <span class="texto-opcion">Notas</span>
         </div>
         <div class="opcion">
             <span class="icono-opcion"><i class="fas fa-moon"></i></span>
@@ -55,11 +56,12 @@
     </nav>
 </header>
 <main class="contenedor-tab">
-       <div class="tab"><?php require_once "./vistas/modulos/usuario.php"; ?></div>
-       <div class="tab "><?php require_once "./vistas/modulos/calendario.php"; ?></div>
-       <div class="tab"><?php require_once "./vistas/modulos/tareas.php"; ?></div>
-       <div class="tab"><?php require_once "./vistas/modulos/mod.php"; ?></div>
-       <div class="tab visible-tab" id="enlace"><?php require_once "./vistas/modulos/enlaces.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/paginas/modulos/usuario.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/paginas/modulos/calendario.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/paginas/modulos/tareas.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/paginas/modulos/notas.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/paginas/modulos/mod.php"; ?></div>
+       <div class="tab"><?php require_once "./vistas/paginas/modulos/enlaces.php"; ?></div>
 </main>
 <script>
     TabPanel();
