@@ -1,4 +1,10 @@
-
+.contenedor_principal_mood{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: crimson;
+}
 /* classes attached to <body> */
 
 .fc-not-allowed,
