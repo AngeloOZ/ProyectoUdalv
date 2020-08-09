@@ -52,19 +52,11 @@
         <script src="./vistas/js/ajaxmood.js"></script>
         <div class="contenedor_grafica">
             <div class="circulo">
-<<<<<<< HEAD:vistas/modulos/mod.php
                 <div id="chartdiv"></div>
                 <script src="./vistas/js/core.js"></script>
                 <script src="./vistas/js/charts.js"></script>
                 <script src="./vistas/js/animated.js"></script>
                 <script src="./vistas/js/grafi.js"></script>
-=======
-                <!-- <div id="chartdiv"></div>
-                <script src="core.js"></script>
-                <script src="charts.js"></script>
-                <script src="animated.js"></script>
-                <script src="grafi.js"></script> -->
->>>>>>> 9ec27488c729f060021dff38819a8a6a32477783:vistas/paginas/modulos/mod.php
             </div>
 
         </div>
