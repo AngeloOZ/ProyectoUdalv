@@ -13,12 +13,17 @@ class ControladorNotas{
                     <h3>'.$valor["title"].'</h3>
                     <p>'.$valor["description"].'</p>
                     <a href="#" target="_blank">Leer mas<i class="fas fa-angle-double-right"></i></a>
+                    <form method="post">
+                        <input type="hidden" name="" value="'.$valor["id"].'">
+                        <input type="submit" value="eliminar">
+                    </form>
                 </div>
                 ';
             }
             return $contenido;          
         }
     }
+
     public function ctrAgregarNotas(){
         if(isset($_POST["nombre"])){
             if(!empty($_POST["nombre"]) && !empty($_POST["descripcion"])){
