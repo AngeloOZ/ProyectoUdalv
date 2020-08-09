@@ -1,1 +1,4 @@
-<h1>Tab Calendario</h1>
+
+  <div id='loading'>loading...</div>
+
+<div id='calendar'></div>
