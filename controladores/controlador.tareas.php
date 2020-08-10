@@ -10,7 +10,7 @@ class ControladorTareas{
             foreach($respuesta as $valor){
                 $contenido .= '
                 <div class="nota2">
-                    <h3>Lorem ipsum dolor sit </h3>
+                    <h3>'.$valor["name_task"].'</h3>
                     <i id="clock" class="far fa-clock"></i>
                   <label class="fecha">2020-12-12</label>
                 <label class="fecha">| 12:20</label>
