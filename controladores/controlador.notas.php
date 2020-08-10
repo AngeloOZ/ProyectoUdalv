@@ -41,7 +41,7 @@ class ControladorNotas{
                 );
                 $respuesta = ModeloNotas::mdlAgregarNota($tabla, $datos);
                 if($respuesta == "ok"){
-                    echo "se guardo";
+                    echo "Se ha Guardado correctamente";
                 }else{
                     echo "$respuesta[1]: $respuesta[2]";
                 }
@@ -50,6 +50,32 @@ class ControladorNotas{
             }
         }
     }
+
+    public function ctrActualizarNotas(){
+        if(isset($_POST["nombre"])){
+            if(!empty($_POST["nombre"]) && !empty($_POST["descripcion"])){
+                $nombre = htmlspecialchars($_POST["nombre"]);
+                $descripcion = htmlspecialchars($_POST["descripcion"]);
+                $token  = $_SESSION["tokenUser"];
+
+                $tabla = "notas";
+                $datos = array(
+                    "nombre" => $nombre,
+                    "descripcion" => $descripcion,
+                    "token" => $token
+                );
+                $respuesta = ModeloNotas::mdlAgregarNota($tabla, $datos);
+                if($respuesta == "ok"){
+                    echo "Se han actualizo los datos";
+                }else{
+                    echo "$respuesta[1]: $respuesta[2]";
+                }
+            }else{
+                echo "no valores vacios";
+            }
+        }
+    }
+
     public function ctrEliminarNota(){
         if(isset($_POST["idNota"]) && !empty($_POST["idNota"])){
             $tabla = "notas";

@@ -9,8 +9,7 @@
         ?>
       </form>
 </div>   -->
-<!-- <a href="#" class="float" target="_blank"> -->
-<!-- <i id="add" class="fas fa-undo-alt"></i>  -->
+
 <div class="notas">
       <?php 
         $notas = ControladorNotas::ctrListarNotas(null);
