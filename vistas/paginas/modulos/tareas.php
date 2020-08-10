@@ -11,7 +11,8 @@
       </form>
 </div>-->
 <div class="notas2">
-
+      <?php 
+        $tareas = ControladorTareas::ctrListarTareas(null);
+        echo $tareas;
+      ?>
 </div>
-<a href="#" class="float" target="_blank">
-<i id="add" class="fas fa-plus"></i></a>
