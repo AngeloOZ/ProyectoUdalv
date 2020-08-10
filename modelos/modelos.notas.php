@@ -30,12 +30,12 @@ class ModeloNotas{
     }
     
     public static function mdlAgregarNota($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, description, token_user,id_user) VALUES(:nombre, :description, :token, :id)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(title, description, token_user, id_user) VALUES(:nombre, :description, :token, :id)");
 
         $stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
         $stmt->bindParam(":description",$datos["descripcion"],PDO::PARAM_STR);
         $stmt->bindParam(":token",$datos["token"],PDO::PARAM_STR);
-        $stmt->bindParam(":id",$datos["id"],PDO::PARAM_INT);
+        $stmt->bindParam(":id", $datos["id"],PDO::PARAM_INT);
 
         if($stmt->execute()){
             return "ok";
@@ -44,13 +44,13 @@ class ModeloNotas{
         }
         $stmt = null;
     }
-    //Actualizar
 
     public static function mdlActualizarNota($tabla, $datos){
         try{
-            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET descripcion = :descripcion WHERE id = :id");
+            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET title = :nombre, description = :descripcion WHERE id = :id");
             $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STMT);
-            $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+            $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STMT);
+            $stmt->bindParam(":id", $datos["idnota"], PDO::PARAM_INT);
             if($stmt->execute()){
                 return "ok";
             }else{

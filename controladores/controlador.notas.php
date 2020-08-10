@@ -10,13 +10,11 @@ class ControladorNotas{
             foreach($respuesta as $valor){
                 $contenido .= '
                 <div class="nota">
+                    <h2 class = "editarNota" atributoidnota="'.Seguridad::encryption($valor["id"]).'">Edit</h2>
+                    <h2 class="eliminarNota" atributoidnota="'.Seguridad::encryption($valor["id"]).'">X</h2>
                     <h3>'.$valor["title"].'</h3>
                     <p>'.$valor["description"].'</p>
                     <a href="#" target="_blank">Leer mas<i class="fas fa-angle-double-right"></i></a>
-                    <form method="post">
-                        <input type="hidden" name="" value="'.$valor["id"].'">
-                        <input type="submit" value="eliminar">
-                    </form>
                 </div>
                 ';
             }
@@ -24,15 +22,19 @@ class ControladorNotas{
         }
     }
 
+/* -------------------------------------------------------------------------- */
+/*                          Controlador Agregar Notas                         */
+/* -------------------------------------------------------------------------- */
+
     public function ctrAgregarNotas(){
-        if(isset($_POST["nombre"])){
-            if(!empty($_POST["nombre"]) && !empty($_POST["descripcion"])){
-                $nombre = htmlspecialchars($_POST["nombre"]);
-                $descripcion = htmlspecialchars($_POST["descripcion"]);
+        if(isset($_POST["insertarNota"])){
+            if(!empty($_POST["insertarNota"]) && !empty($_POST["insertarDescripcion"])){
+                $nombre = htmlspecialchars($_POST["insertarNota"]);
+                $descripcion = htmlspecialchars($_POST["insertarDescripcion"]);
                 $token  = $_SESSION["tokenUser"];
                 $id = $_SESSION["idUser"];
-
                 $tabla = "notas";
+
                 $datos = array(
                     "nombre" => $nombre,
                     "descripcion" => $descripcion,
@@ -41,52 +43,88 @@ class ControladorNotas{
                 );
                 $respuesta = ModeloNotas::mdlAgregarNota($tabla, $datos);
                 if($respuesta == "ok"){
-                    echo "Se ha Guardado correctamente";
+                    AlertaSuccessNotas("La nota se agrego correctamente","Registrado");
                 }else{
-                    echo "$respuesta[1]: $respuesta[2]";
+                    $error = "$respuesta[1]: $respuesta[2]";
+                    AlertaErrorNotas($error);
                 }
             }else{
-                echo "no valores vacios";
+                AlertaErrorNotas("No se permite valores vacíos");
             }
         }
     }
 
     public function ctrActualizarNotas(){
-        if(isset($_POST["nombre"])){
-            if(!empty($_POST["nombre"]) && !empty($_POST["descripcion"])){
-                $nombre = htmlspecialchars($_POST["nombre"]);
-                $descripcion = htmlspecialchars($_POST["descripcion"]);
+        if(isset($_POST["insertarDescripcion"])){
+            if(!empty($_POST["insertarNota"]) && !empty($_POST["insertarDescripcion"]) && !empty($_POST["editarID"])){
+                $nombre = htmlspecialchars($_POST["insertarNota"]);
+                $descripcion = htmlspecialchars($_POST["insertarDescripcion"]);
                 $token  = $_SESSION["tokenUser"];
+                $idNota = Seguridad::decryption($_POST["editarID"]);
 
                 $tabla = "notas";
                 $datos = array(
                     "nombre" => $nombre,
                     "descripcion" => $descripcion,
-                    "token" => $token
+                    "token" => $token,
+                    "idnota" => $idNota
                 );
-                $respuesta = ModeloNotas::mdlAgregarNota($tabla, $datos);
+                $respuesta = ModeloNotas::mdlActualizarNota($tabla, $datos);
                 if($respuesta == "ok"){
-                    echo "Se han actualizo los datos";
+                    AlertaSuccessNotas("Se actualizo la nota ","Actualizado");
                 }else{
-                    echo "$respuesta[1]: $respuesta[2]";
+                    $err = "$respuesta[1]: $respuesta[2]";
+                    AlertaErrorNotas($err);
                 }
             }else{
-                echo "no valores vacios";
+                AlertaErrorNotas("no valores vacios");
             }
         }
     }
 
     public function ctrEliminarNota(){
         if(isset($_POST["idNota"]) && !empty($_POST["idNota"])){
+            $id = Seguridad::decryption($_POST["idNota"]);
             $tabla = "notas";
-            $respuesta = ModeloNotas::mdlEliminarNota($tabla, $_POST["idNota"]);
+            $respuesta = ModeloNotas::mdlEliminarNota($tabla, $id);
 
             if($respuesta == "ok"){
-                echo "se elimino";
+                AlertaSuccessNotas("Se elimino la nota correctamente","Eliminado");
             }else{
-                echo "$respuesta[1]: $respuesta[2]";
+                $error =  "$respuesta[1]: $respuesta[2]";
+                AlertaErrorNotas($error);
             }
         }
     }
 }
-?>
+function AlertaErrorNotas($sms){
+    $resp = array("RespType"=>"error","sms"=>$sms, "sms2"=>"Oops...");
+    echo json_encode($resp);
+}
+function AlertaSuccessNotas($sms, $sms2){
+    $resp = array("RespType"=>"success","sms"=>$sms, "sms2"=>$sms2);
+    echo json_encode($resp);
+}
+if(isset($_POST["operacionEnlace"])){
+    session_start();
+    require_once "../modelos/modelos.notas.php";
+    require_once "controlador.security.php";
+    $op = $_POST["operacionEnlace"];
+    switch($op){
+        case "create":
+            $crear = new ControladorNotas();
+            $crear->ctrAgregarNotas();
+            break;
+        case "read":
+            echo ControladorNotas::ctrListarNotas(null);
+            break;
+        case "update":
+            $delete = new ControladorNotas();
+            $delete->ctrActualizarNotas();
+            break;
+        case "delete":
+            $eliminar = new ControladorNotas();
+            $eliminar->ctrEliminarNota();
+            break;
+    }
+}

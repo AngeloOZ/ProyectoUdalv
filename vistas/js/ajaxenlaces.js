@@ -12,7 +12,6 @@ const CtnTabla = document.getElementById('contenedor-tabla');
 //*Funciones que se ejecutan al cargar
 document.getElementById('form-search-url').addEventListener('submit',e=>{e.preventDefault()});
 ListarEnlaces();
-
 //*Eventos 
 CtnTabla.addEventListener('click', e =>{
     if(e.target.classList.contains('fa-pencil-alt')){
