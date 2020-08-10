@@ -37,6 +37,22 @@ class ControladorMood
         $resultado = ModeloMood::mdlMostrarEstado($tabla, $token);
         echo json_encode($resultado);
     }
+    public static function ctrMostrarEstadoSemanal()
+    {
+        // session_start();
+        $token = $_SESSION["tokenUser"];
+        $tabla = "estado";
+        $resultado = ModeloMood::mdlMostrarEstadoSemanal($tabla, $token);
+        echo json_encode($resultado);
+    }
+    public static function ctrMostrarEstadoMensual()
+    {
+        // session_start();
+        $token = $_SESSION["tokenUser"];
+        $tabla = "estado";
+        $resultado = ModeloMood::mdlMostrarEstadoMensual($tabla, $token);
+        echo json_encode($resultado);
+    }
 }
 
 
@@ -57,3 +73,28 @@ if (isset($_POST["operacionMood"])) {
         }
     }
 }
+if (isset($_POST["operacionMood1"])) {
+    session_start();
+    require_once "../modelos/modelos.mood.php";
+    $post = $_POST["operacionMood1"];
+    switch ($post) {
+        case "read": {
+                $leer = new ControladorMood();
+                $leer->ctrMostrarEstadoSemanal();
+                break;
+            }
+        }
+    }
+    if (isset($_POST["operacionMood2"])) {
+        session_start();
+        require_once "../modelos/modelos.mood.php";
+        $post = $_POST["operacionMood2"];
+        switch ($post) {
+            case "read": {
+                    $leer = new ControladorMood();
+                    $leer->ctrMostrarEstadoMensual();
+                    break;
+                }
+            }
+        }
+

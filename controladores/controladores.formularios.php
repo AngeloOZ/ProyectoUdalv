@@ -30,6 +30,7 @@ class ControladorFormularios{
                         $respuesta = ModelosFormularios::mdlRegistrarUsuario($tabla,$datos);
                         if($respuesta == "ok"){
                             MsgSuccess("El usuario se registro Correctamente");
+                            estadoAnimo();
                             LimpiarCache();
                         }else{
                             MsgError("$respuesta[1]: $respuesta[2]");
@@ -144,7 +145,44 @@ function LimpiarCache(){
         }
     </script>';
 }
-
+function estadoAnimo(){
+    $tabla = "estado";
+    $datos = array(
+        "name" => "Muy Bien",
+        "token_user" => $_SESSION["tokenUser"],
+        "id_user" => $_SESSION["idUser"],
+        "mood_day" => "2012-05-05"
+    );
+    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos);
+    $datos2 = array(
+        "name" => "Bien",
+        "token_user" => $_SESSION["tokenUser"],
+        "id_user" => $_SESSION["idUser"],
+        "mood_day" => "2012-05-06"
+    );
+    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos2);
+    $datos3 = array(
+        "name" => "Regular",
+        "token_user" => $_SESSION["tokenUser"],
+        "id_user" => $_SESSION["idUser"],
+        "mood_day" => "2012-05-07"
+    );
+    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos3);
+    $datos4 = array(
+        "name" => "Mal",
+        "token_user" => $_SESSION["tokenUser"],
+        "id_user" => $_SESSION["idUser"],
+        "mood_day" => "2012-05-08"
+    );
+    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos4);
+    $datos5 = array(
+        "name" => "Muy Mal",
+        "token_user" => $_SESSION["tokenUser"],
+        "id_user" => $_SESSION["idUser"],
+        "mood_day" => "2012-05-09"
+    );
+    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos5);
+}
 
 if(isset($_POST["validarEmail"]) && !empty($_POST["validarEmail"])){
     require_once "../modelos/modelos.login.php";

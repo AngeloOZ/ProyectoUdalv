@@ -2,10 +2,21 @@
 const BtnSemanal = document.getElementById("boton_semanal");
 if(BtnSemanal){
     BtnSemanal.addEventListener("click",()=>{
+        TraerDatos1();
+    })
+}
+const BtnMensual = document.getElementById("boton_mensual");
+if(BtnMensual){
+    BtnMensual.addEventListener("click",()=>{
+        TraerDatos2();
+    })
+}
+const BtnTodo = document.getElementById("boton_todo");
+if(BtnTodo){
+    BtnTodo.addEventListener("click",()=>{
         TraerDatos();
     })
 }
-
 let popo
 TraerDatos();
 const formInsertar = document.getElementById("insertarMood");
@@ -37,6 +48,48 @@ function TraerDatos(){
     let operacion="read";
     let datos=new FormData();
     datos.append("operacionMood",operacion);
+    let xhr;
+    if(window.XMLHttpRequest){
+        xhr=new XMLHttpRequest();
+    }
+    else{
+        xhr=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhr.open("POST","controladores/controlador.mood.php");
+    xhr.addEventListener("load",()=>{
+        resultado= JSON.parse(xhr.response);
+        popo=resultado;
+        //console.log(popo);
+        actualizarGrafica();
+    });
+    xhr.send(datos);
+    
+}
+function TraerDatos1(){
+    let operacion="read";
+    let datos=new FormData();
+    datos.append("operacionMood1",operacion);
+    let xhr;
+    if(window.XMLHttpRequest){
+        xhr=new XMLHttpRequest();
+    }
+    else{
+        xhr=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhr.open("POST","controladores/controlador.mood.php");
+    xhr.addEventListener("load",()=>{
+        resultado= JSON.parse(xhr.response);
+        popo=resultado;
+        //console.log(popo);
+        actualizarGrafica();
+    });
+    xhr.send(datos);
+    
+}
+function TraerDatos2(){
+    let operacion="read";
+    let datos=new FormData();
+    datos.append("operacionMood2",operacion);
     let xhr;
     if(window.XMLHttpRequest){
         xhr=new XMLHttpRequest();

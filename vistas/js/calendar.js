@@ -7641,7 +7641,9 @@ var FullCalendar = (function (exports) {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         Toolbar.prototype.render = function () {
-            var _a = this.props, model = _a.model, extraClassName = _a.extraClassName;
+            var _a = this.props, 
+            model = _a.model, 
+            extraClassName = _a.extraClassName;
             var forceLtr = false;
             var startContent, endContent;
             var centerContent = model.center;
@@ -7666,8 +7668,7 @@ var FullCalendar = (function (exports) {
             ];
             return (createElement("div", { className: classNames.join(' ') },
                 this.renderSection('start', startContent || []),
-                this.renderSection('center', centerContent || []),
-                this.renderSection('end', endContent || [])));
+                this.renderSection('center', centerContent || []),));
         };
         Toolbar.prototype.renderSection = function (key, widgetGroups) {
             var props = this.props;
@@ -13654,7 +13655,7 @@ var FullCalendar = (function (exports) {
             var allDayContent = (options.allDaySlot !== false) && (function (contentArg) { return (createElement(DayTable, __assign({}, splitProps['allDay'], { dateProfile: dateProfile, dayTableModel: dayTableModel, nextDayThreshold: options.nextDayThreshold, tableMinWidth: contentArg.tableMinWidth, colGroupNode: contentArg.tableColGroupNode, renderRowIntro: hasAttachedAxis ? _this.renderTableRowAxis : null, showWeekNumbers: false, expandRows: false, headerAlignElRef: _this.headerElRef, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, forPrint: props.forPrint }, _this.getAllDayMaxEventProps()))); });
             var timeGridContent = function (contentArg) { return (createElement(DayTimeCols, __assign({}, splitProps['timed'], { dayTableModel: dayTableModel, dateProfile: dateProfile, axis: hasAttachedAxis, slotDuration: options.slotDuration, slatMetas: slatMetas, forPrint: props.forPrint, tableColGroupNode: contentArg.tableColGroupNode, tableMinWidth: contentArg.tableMinWidth, clientWidth: contentArg.clientWidth, clientHeight: contentArg.clientHeight, onSlatCoords: _this.handleSlatCoords, expandRows: contentArg.expandRows, onScrollTopRequest: _this.handleScrollTopRequest }))); };
             return hasDetachedAxis
-                ? this.renderHScrollLayout(headerContent, allDayContent, timeGridContent, dayTableModel.colCnt, dayMinWidth, slatMetas, this.state.slatCoords)
+                ? this.renderHScrollLayout(headerCo, allDayContent, timeGridContent, dayTableModel.colCnt, dayMinWidth, slatMetas, this.state.slatCoords)
                 : this.renderSimpleLayout(headerContent, allDayContent, timeGridContent);
         };
         return DayTimeColsView;
