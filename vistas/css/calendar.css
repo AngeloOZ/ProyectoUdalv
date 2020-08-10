@@ -3,10 +3,19 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  background-color: crimson;
+  /* background-color: crimson; */
 }
-/* classes attached to <body> */
-
+#loading {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+#calendar {
+  height: 480px;
+  width: 1200px;
+  margin: 0 auto;
+}
 .fc-not-allowed,
 .fc-not-allowed .fc-event { /* override events' custom cursors */
   cursor: not-allowed;
@@ -228,13 +237,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
   }
 .fc .fc-button-primary:focus {
     box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
-  }
-  
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 20px;
   }
 .fc .fc-button-primary:not(:disabled):active,
   .fc .fc-button-primary:not(:disabled).fc-button-active {
