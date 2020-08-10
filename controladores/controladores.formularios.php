@@ -8,6 +8,11 @@ class ControladorFormularios{
 //* -------------------------------------------------------------------------- */
     public function ctrRegistrarUsuario(){
         if(isset($_POST["registrarCorreo"])){
+            if(!Seguridad::VerificarToken($_POST["tokenCSRF"],"login")){
+                MsgError("Error: 500 Parece que hubo un error al conectar con el servidor recarga le página");
+                LimpiarCache();
+                die();
+            }
             $email =  trim($_POST["registrarCorreo"]);
             $nombreCompleto = trim($_POST["registrarNombre"]);
             $password = trim($_POST["registrarPwd"]);
@@ -54,10 +59,10 @@ class ControladorFormularios{
 //* -------------------------------------------------------------------------- */
     public function ctrIniciarSession(){
         if(isset($_POST["ingresarEmail"])){
-            if(!Seguridad::VerificarToken($_POST["tokenCSRF"])){
+            if(!Seguridad::VerificarToken($_POST["tokenCSRF"],"login")){
                 MsgError("Error: 500 Parece que hubo un error al conectar con el servidor recarga le página");
                 LimpiarCache();
-                return;
+                die();
             }
             $email = $_POST["ingresarEmail"];
             $password = $_POST["ingresarPwd"];
@@ -66,6 +71,7 @@ class ControladorFormularios{
                 $respuesta = ModelosFormularios::mdlSeleccionarRegistros($tabla,"email",$email);
                 if(!empty($respuesta)){
                     if($email == $respuesta["email"] && password_verify($password,$respuesta["password"])){
+                        Seguridad::destruirToken("login");
                         $_SESSION["validarSession"] = "ok";
                         $_SESSION["tokenUser"] = $respuesta["token"];
                         $_SESSION["idUser"] = $respuesta["id"];
