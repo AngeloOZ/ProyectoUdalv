@@ -10,12 +10,13 @@ class ControladorTareas{
             foreach($respuesta as $valor){
                 $contenido .= '
                 <div class="nota2">
+                    <i id="cross" class="far fa-times-circle"></i>
+                    <i id="erraiser" class="fas fa-eraser"></i>
                     <h2 class = "editarTask" atributoidtask="'.Seguridad::encryption($valor["id"]).'">Edit</h2>
                     <h2 class="eliminarTask" atributoidtask="'.Seguridad::encryption($valor["id"]).'">X</h2>
                     <h3>'.$valor["name_task"].'</h3>
                     <i id="clock" class="far fa-clock"></i>
                     <label class="fecha">'.$valor["date"].'</label>
-                    <a href="#" target="_blank">Editar<i class="fas fa-angle-double-right"></i></a>
               </div>
                 ';
             }
@@ -57,18 +58,18 @@ class ControladorTareas{
 
     public function ctrActualizarTask(){
         if(isset($_POST["fecha"])){
-            if(!empty($_POST["name"]) && !empty($_POST["fecha"]) && !empty($_POST["editarID"])){
+            if(!empty($_POST["name"]) && !empty($_POST["fecha"]) && !empty($_POST["editarIDTask"])){
                 $nombre = htmlspecialchars($_POST["name"]);
                 $fecha = htmlspecialchars($_POST["fecha"]);
                 $token  = $_SESSION["tokenUser"];
-                $idTask = Seguridad::decryption($_POST["editarID"]);
+                $idTask = Seguridad::decryption($_POST["editarIDTask"]);
 
                 $tabla = "tarea";
                 $datos = array(
                     "name_task" => $nombre,
                     "date" => $fecha,
                     "token" => $token,
-                    "idtask" => $idTask
+                    "idTask" => $idTask
                 );
                 $respuesta = ModeloTareas::mdlActualizarTarea($tabla, $datos);
                 if($respuesta == "ok"){

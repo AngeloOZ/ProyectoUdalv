@@ -10,11 +10,12 @@
   padding: 70px 30px;
   margin: 0px 50px;
   float: left;
+  position: relative;
 }
 
 .task-box h1 {
   margin: 0;
-  padding: 0 0 20px;
+  padding: -10px 0 20px;
   text-align: center;
   font-size: 25px;
 }
@@ -51,7 +52,7 @@
   color: #fff;
   font-size: 18px;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .task-box input[type="submit"]:hover {
@@ -166,4 +167,29 @@
 
 #clock{
   text-align: left;
+}
+.eliminarTask{
+  color: #fff;
+  cursor: pointer;
+}
+.editarTask{
+  color: #fff;
+  cursor: pointer;
+}
+
+#cross{
+  display: inline;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: wheat;
+  font-size: 20px;
+}
+#erraiser{
+  display: inline;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: wheat;
+  font-size: 20px;
 }

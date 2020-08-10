@@ -7,7 +7,7 @@
         <label for="fecha">Fecha</label>
         <input type="date" id="fecha" name="fecha"  value="<?php echo date("Y-m-d");?>">
         <input type="submit" value="Guardar">
-        <input type="hidden" name="editarID" value="" id="inputId">
+        <input type="hidden" name="editarIDTask" value="" id="inputId">
       </form>
     </div>
     <div class="notas2" id="contenedorTask"></div>  
