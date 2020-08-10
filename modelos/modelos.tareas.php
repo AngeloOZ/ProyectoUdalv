@@ -30,10 +30,10 @@ class ModeloTareas{
     }
     
     public static function mdlAgregarTarea($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(name_task, description_task, state_task, token_user,id_user) VALUES(:name_task,:description_task, :state_task, :token, :id)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(name_task, date, state_task, token_user,id_user) VALUES(:name_task,:date, :state_task, :token, :id)");
         
         $stmt->bindParam(":name_task",$datos["name_task"],PDO::PARAM_STR);
-        $stmt->bindParam(":description_task",$datos["descripcion_task"],PDO::PARAM_STR);
+        $stmt->bindParam(":date",$datos["date"],PDO::PARAM_STR);
         $stmt->bindParam(":state_task",$datos["state_task"],PDO::PARAM_STR);
         $stmt->bindParam(":token",$datos["token"],PDO::PARAM_STR);
         $stmt->bindParam(":id",$datos["id"],PDO::PARAM_INT);
@@ -47,11 +47,11 @@ class ModeloTareas{
     }
     //Actualizar
 
-    public static function mdlActualizarNota($tabla, $datos){
+    public static function mdlActualizarTarea($tabla, $datos){
         try{
-            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name_task = :name_task, descripcion_task = :descripcion_task, state_task = :state_task  WHERE id = :id");
+            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name_task = :name_task, date = :date, state_task = :state_task  WHERE id = :id");
             $stmt->bindParam(":name_task", $datos["name_task"], PDO::PARAM_STMT);
-            $stmt->bindParam(":descripcion_task", $datos["descripcion_task"], PDO::PARAM_STMT);
+            $stmt->bindParam(":date", $datos["date"], PDO::PARAM_STMT);
             $stmt->bindParam(":state_task", $datos["state_task"], PDO::PARAM_STMT);
             $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
             if($stmt->execute()){
@@ -63,7 +63,7 @@ class ModeloTareas{
             print $e->getMessage();
         }
     }
-    public static function mdlEliminarNota($tabla, $id){
+    public static function mdlEliminarTarea($tabla, $id){
         $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
