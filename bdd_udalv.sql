@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-08-2020 a las 21:52:45
+-- Tiempo de generación: 10-08-2020 a las 05:07:36
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -50,11 +50,13 @@ INSERT INTO `enlace` (`id`, `name`, `icon`, `link`, `id_user`, `token_user`) VAL
 (12, 'Mozilla', 'fab fa-gitkraken', 'https://developer.mozilla.org/es/docs/Web/Guide/Usando_Objetos_FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
 (13, 'Mozilla', 'fab fa-gitkraken', 'https://developer.mozilla.org/es/docs/Web/Guide/Usando_Objetos_FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
 (14, 'Mozilla 2', 'fas fa-bookmark', 'https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
-(15, 'skdnvslk', 'fab fa-gitkraken', 'https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
-(16, 'w3school', 'fab fa-gitkraken', 'https://www.w3schools.com/jsref/met_form_reset.asp', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(15, 'skdnvslk', 'fab fa-github', 'https://developer.mozilla.org/es/docs/Web/API/XMLHttpRequest/FormData', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(16, 'w3school', 'fab fa-github', 'https://www.w3schools.com/jsref/met_form_reset.asp', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
 (17, 'Youtube', 'fab fa-youtube', 'https://www.youtube.com', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
 (18, 'facebbok', 'fab fa-facebook', 'https://www.facebook.com', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
-(19, 'Whatsapp', 'fab fa-instagram', 'https://web.whatsapp.com/', 4, '$2y$10$6va9f7N5CdoqPMsaR8du4.ClqtPyT0bzgdd.eA4xT2KZxclCZ5/02');
+(19, 'Whatsapp', 'fab fa-instagram', 'https://web.whatsapp.com/', 4, '$2y$10$6va9f7N5CdoqPMsaR8du4.ClqtPyT0bzgdd.eA4xT2KZxclCZ5/02'),
+(20, 'Chino y Nacho', 'fab fa-youtube', 'https://www.youtube.com/watch?v=AMTAQ-AJS4Y&list=RDOPf0YbXqDm0&index=6', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq'),
+(23, 'askcakj', 'fab fa-youtube', 'http://localhost/udalv/inicio', 3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq');
 
 -- --------------------------------------------------------
 
@@ -70,6 +72,15 @@ CREATE TABLE `estado` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`id`, `name`, `mood_day`, `token_user`, `id_user`) VALUES
+(7, 'Muy Malo', '2020-08-08', '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 3),
+(9, 'Bien', '2020-08-09', '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 3),
+(15, 'Regular', '2020-08-10', '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -78,10 +89,20 @@ CREATE TABLE `estado` (
 
 CREATE TABLE `notas` (
   `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `token_user` varchar(150) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `notas`
+--
+
+INSERT INTO `notas` (`id`, `title`, `description`, `token_user`, `id_user`) VALUES
+(2, 'Hola', 'Hola mundo', '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 3),
+(13, 'Hola 2', 'dscsdcnsj', '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 3),
+(15, 'Prueba actualizar', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el ', '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 3);
 
 -- --------------------------------------------------------
 
@@ -139,6 +160,7 @@ ALTER TABLE `enlace`
 --
 ALTER TABLE `estado`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_mood` (`id_user`,`mood_day`),
   ADD KEY `FK_estado` (`id_user`,`token_user`);
 
 --
@@ -170,19 +192,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `enlace`
 --
 ALTER TABLE `enlace`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `notas`
 --
 ALTER TABLE `notas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `tarea`

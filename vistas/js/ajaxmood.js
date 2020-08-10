@@ -17,7 +17,6 @@ if(BtnTodo){
         TraerDatos();
     })
 }
-let popo
 TraerDatos();
 const formInsertar = document.getElementById("insertarMood");
 formInsertar.addEventListener("submit",e=>{
@@ -26,7 +25,6 @@ formInsertar.addEventListener("submit",e=>{
     TraerDatos();
 })
 function agregarMood(){
-   
     let operacion="insert";
     let datos=new FormData(formInsertar);
     datos.append("operacionMood",operacion);
@@ -39,7 +37,7 @@ function agregarMood(){
     }
     xhr.open("POST","controladores/controlador.mood.php");
     xhr.addEventListener("load",()=>{
-        resultado= JSON.parse(xhr.response);
+        resultado= (xhr.response);
         console.log(resultado);
     });
     xhr.send(datos);
@@ -58,9 +56,7 @@ function TraerDatos(){
     xhr.open("POST","controladores/controlador.mood.php");
     xhr.addEventListener("load",()=>{
         resultado= JSON.parse(xhr.response);
-        popo=resultado;
-        //console.log(popo);
-        actualizarGrafica();
+        actualizarGrafica(resultado);
     });
     xhr.send(datos);
     
@@ -79,9 +75,7 @@ function TraerDatos1(){
     xhr.open("POST","controladores/controlador.mood.php");
     xhr.addEventListener("load",()=>{
         resultado= JSON.parse(xhr.response);
-        popo=resultado;
-        //console.log(popo);
-        actualizarGrafica();
+        actualizarGrafica(resultado);
     });
     xhr.send(datos);
     
@@ -100,9 +94,7 @@ function TraerDatos2(){
     xhr.open("POST","controladores/controlador.mood.php");
     xhr.addEventListener("load",()=>{
         resultado= JSON.parse(xhr.response);
-        popo=resultado;
-        //console.log(popo);
-        actualizarGrafica();
+        actualizarGrafica(resultado);
     });
     xhr.send(datos);
     

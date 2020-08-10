@@ -1,9 +1,8 @@
-.contenedor_principal_mood{
+.contenedor_principal_calendar{
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  /* background-color: crimson; */
 }
 #loading {
     display: none;

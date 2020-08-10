@@ -1,7 +1,7 @@
 
 <div class="contenedor_principal_mood">
     <div class="contenedor_registro_mood">
-        <form id="insertarMood" action="" method="POST">
+        <form id="insertarMood">
             <h2 class="Titulito"> ¿Cómo te sientes hoy?
             </h2>
             <div class="contenedor_opciones">
@@ -31,7 +31,6 @@
     </div>
     <div class="contenedor_grafico_principal">
         <div class="contenedor_botones">
-
             <a id="boton_semanal" href="#" class="btngrafica">
                 <span> Semanal <i class="fas fa-calendar-week"></i>
                 </span>
