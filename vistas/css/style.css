@@ -330,6 +330,7 @@ a.opcion{
 /* -------------------------------------------------------------------------- */
 .contenedor-tab{
     width: 100%;
+    max-width: 100%;
     height: auto;
     min-height: calc(100vh - 80px);
     position: relative;
@@ -337,28 +338,10 @@ a.opcion{
 }
 .tab{
     width: 100%;
-    margin: auto;
-    /* font-size: 50px; */
     height: 100%;
     position: absolute;
-    left: -100%;
+    left: -1000%;
     text-align: center;
-        /* transition: .3s ease-out all; */
-}
-.tab:nth-child(1){
-    background-color: darkblue;
-}
-.tab:nth-child(2){
-    /* background-color: darkgoldenrod; */
-}
-.tab:nth-child(3){
-    /* background-color: darksalmon; */
-}
-.tab:nth-child(4){
-    background-color: darkviolet;
-}
-.tab:nth-child(5){
-    background-color: #B06AB3;
 }
 .tab.visible-tab{
     left: 0;

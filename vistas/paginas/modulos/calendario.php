@@ -1,4 +1,4 @@
-<div class="contenedor_principal_mood">
+<div class="contenedor_principal_calendar">
   <div id='loading'>loading...</div>
 
   <div id='calendar'></div>
