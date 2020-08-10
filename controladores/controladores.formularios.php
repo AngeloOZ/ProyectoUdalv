@@ -8,9 +8,9 @@ class ControladorFormularios{
 //* -------------------------------------------------------------------------- */
     public function ctrRegistrarUsuario(){
         if(isset($_POST["registrarCorreo"])){
-            $email =  $_POST["registrarCorreo"];
-            $nombreCompleto = $_POST["registrarNombre"];
-            $password = $_POST["registrarPwd"];
+            $email =  trim($_POST["registrarCorreo"]);
+            $nombreCompleto = trim($_POST["registrarNombre"]);
+            $password = trim($_POST["registrarPwd"]);
             if(!empty($email) && !empty($nombreCompleto) && !empty($password)){
                 if(filter_var($email,FILTER_VALIDATE_EMAIL) &&
                 preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚÑñ ,]+$/',$nombreCompleto) &&
@@ -25,12 +25,12 @@ class ControladorFormularios{
                             "name"=>$name,
                             "lastname" => $lastname,
                             "email"=>$email,
-                            "password"=>password_hash($password, PASSWORD_BCRYPT)
+                            "password"=>password_hash($password, PASSWORD_BCRYPT),
+                            "avatar" => "fas fa-user"
                         );
                         $respuesta = ModelosFormularios::mdlRegistrarUsuario($tabla,$datos);
                         if($respuesta == "ok"){
                             MsgSuccess("El usuario se registro Correctamente");
-                            estadoAnimo();
                             LimpiarCache();
                         }else{
                             MsgError("$respuesta[1]: $respuesta[2]");
@@ -55,7 +55,7 @@ class ControladorFormularios{
     public function ctrIniciarSession(){
         if(isset($_POST["ingresarEmail"])){
             if(!Seguridad::VerificarToken($_POST["tokenCSRF"])){
-                MsgError("Error: 500 Parece que hubo un error al conectar con el servidor");
+                MsgError("Error: 500 Parece que hubo un error al conectar con el servidor recarga le página");
                 LimpiarCache();
                 return;
             }
@@ -111,6 +111,82 @@ class ControladorFormularios{
             echo "ocupado";
         }
     }
+    public function ctrEditarInformacionUsuario(){
+        if(isset($_POST["editUserName"])){
+            $nombre = trim($_POST["editUserName"]);
+            $apellido = trim($_POST["editUserLast"]);
+            $fecha = $_POST["editUserDate"];
+            $avatar = $_POST["editarUserAvatar"];
+            if(!empty($nombre) && !empty($apellido) && !empty($fecha)){
+                if(preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚÑñ]+$/',$nombre) &&
+                   preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚÑñ]+$/',$apellido) &&
+                   preg_match('/^([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})/',$fecha)
+                ){
+                    $tabla = 'usuario';
+                    $datos = array(
+                        "nombre" => $nombre,
+                        "apellido" => $apellido,
+                        "fecha" => $fecha,
+                        "avatar" => $avatar,
+                        "id" => $_SESSION["idUser"],
+                    );
+                    $respuesta = ModelosFormularios::mdlEditarInformacionUsuario($tabla, $datos);
+
+                    if($respuesta == "ok"){
+                        MsgSuccess("Se actualizo los datos correctamente");
+                    }else{
+                        echo "$respuesta[1]: $respuesta[2]";
+                        MsgError("Error");
+                    }
+                    LimpiarCache();
+                }else{
+                    MsgError("Los caracteres especiales no son permitidos");
+                }
+            }else{
+                MsgError("Parece que falto llenar un campo");
+            }
+        }
+    }
+    public function ctrEditarPassword(){
+        if(isset($_POST["editPassActual"])){
+            $passActual = $_POST["editPassActual"];
+            $passNew = $_POST["editPassnew"];
+            $passNewCon = $_POST["editPassnewCon"];
+            if(!empty($passActual) && !empty($passNew) && !empty($passNewCon)){
+                if(preg_match('/^[0-9a-zA-Z@#.$%&]+$/',$passActual) &&
+                   preg_match('/^[0-9a-zA-Z@#.$%&]+$/',$passNew) &&
+                   preg_match('/^[0-9a-zA-Z@#.$%&]+$/',$passNewCon)
+                ){
+                    if((strlen($passNew) <= 20 && strlen($passNew) >= 4) && ($passNew == $passNewCon)){
+                        $id = $_SESSION["idUser"];
+                        $tabla = 'usuario';
+                        
+                        $conf = ModelosFormularios::mdlSeleccionarRegistros($tabla,"id", $id);
+                        if(!empty($conf)){
+                            if(password_verify($passActual,$conf["password"])){
+                                $pass = password_hash($passNew, PASSWORD_BCRYPT);
+                                $respuesta = ModelosFormularios::ctrEditarPassword($tabla, $id, $pass);
+                                if($respuesta["state"] == "ok"){
+                                    MsgSuccess("Contraseña actualizada Correctamente");
+                                }else{
+                                    MsgError("Ups... parece que hubo un error");
+                                }
+                                LimpiarCache();
+                            }
+                        }else{
+                            MsgError("La contraseña actual no coincide");
+                        }
+                    }else{
+                        MsgError("Las contraseñas no coinciden o la longitud no es correcta de 4 a 20 caracteres");
+                    }
+                }else{
+                    MsgError("No se permite ciertos caracteres especiales");
+                }
+            }else{
+                MsgError("Todos los campos son requeridos");
+            }
+        }
+    }
 }
 
 //todo -------------------------------------------------------------------------- */
@@ -135,6 +211,9 @@ function MsgSuccess($sms){
                 showConfirmButton: false,
                 timer: 2000
             })
+            setTimeout(()=>{
+                location.reload();
+            },2001);
         </script>
     ";
 }
@@ -145,45 +224,6 @@ function LimpiarCache(){
         }
     </script>';
 }
-function estadoAnimo(){
-    $tabla = "estado";
-    $datos = array(
-        "name" => "Muy Bien",
-        "token_user" => $_SESSION["tokenUser"],
-        "id_user" => $_SESSION["idUser"],
-        "mood_day" => "2012-05-05"
-    );
-    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos);
-    $datos2 = array(
-        "name" => "Bien",
-        "token_user" => $_SESSION["tokenUser"],
-        "id_user" => $_SESSION["idUser"],
-        "mood_day" => "2012-05-06"
-    );
-    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos2);
-    $datos3 = array(
-        "name" => "Regular",
-        "token_user" => $_SESSION["tokenUser"],
-        "id_user" => $_SESSION["idUser"],
-        "mood_day" => "2012-05-07"
-    );
-    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos3);
-    $datos4 = array(
-        "name" => "Mal",
-        "token_user" => $_SESSION["tokenUser"],
-        "id_user" => $_SESSION["idUser"],
-        "mood_day" => "2012-05-08"
-    );
-    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos4);
-    $datos5 = array(
-        "name" => "Muy Mal",
-        "token_user" => $_SESSION["tokenUser"],
-        "id_user" => $_SESSION["idUser"],
-        "mood_day" => "2012-05-09"
-    );
-    $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos5);
-}
-
 if(isset($_POST["validarEmail"]) && !empty($_POST["validarEmail"])){
     require_once "../modelos/modelos.login.php";
     $valEmail = new ControladorFormularios();

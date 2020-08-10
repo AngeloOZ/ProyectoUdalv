@@ -12,7 +12,7 @@
 ?> 
 <div class="menu-lateral">
     <div class="datos">
-        <span><i class="fas fa-user-ninja"></i></span>
+        <span><i class="<?php echo $usuario["username"] ?>"></i></span>
         <p><?php echo $usuario["name"] ?></p>
         <p><?php echo $usuario["email"] ?></p>
     </div>

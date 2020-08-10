@@ -651,6 +651,100 @@ div.overlay .close-overlay{
 .fa-bookmark{
     color: green;
 }
+
+/* -------------------------------------------------------------------------- */
+/*?                              Seccion Usuarios                              */
+/* -------------------------------------------------------------------------- */
+.contenedor-usuario{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+.personal-information,
+.account-information{
+    padding: 10px;
+    width: 100%;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+}
+.title-information{
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.form{
+    width: 90%;
+    margin: auto;
+}
+.icono-profile{
+    background-color: #243D51;
+    margin: 15px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icono-profile i{
+    /* color: #4DABF7; */
+    color: #fff;
+    font-size: 60px;
+}
+.grupo-form{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.grupo-form select{
+    font-family: 'Nunito', sans-serif;
+    width: 60%;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 300;
+
+}
+.grupo-form label{
+    font-family: 'Nunito', sans-serif;
+    width: 40%;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: left;
+}
+.grupo-form input{
+    font-family: 'Nunito', sans-serif;    
+    width: 60%;
+    font-size: 18px;
+    font-weight: 300;
+    height: 30px;
+    padding: 0 5px;
+}
+.form input[type="submit"]{
+    margin: 10px auto;
+    height: 40px;
+    width: 90%;
+    border: none;
+    background-color: #000;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 300;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.account-information{
+   margin: 20px 0;
+}
+.account-information .form{
+    margin-top: 20px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*?                               Seccion Desktop                              */
+/* -------------------------------------------------------------------------- */
+
 @media screen and (min-width: 600px){
     div.overlay .agregar-link{
         height: 370px;
@@ -795,6 +889,28 @@ div.overlay .close-overlay{
         width: 60%;
         height: 550px;
     }
+    .contenedor-usuario{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-start;
+    }
+    .personal-information{
+        width: 320px;
+    }
+    .account-information{
+        width: 320px;
+        margin: 0;
+    }
+    .contenedor-usuario2{
+        padding: 25px;
+        width: 80%;
+        height: 500px;
+        border-radius: 8px;
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
 }
 
 @media screen and (min-width: 1000px) {
@@ -827,5 +943,11 @@ div.overlay .close-overlay{
         flex-direction: row;
         justify-content: space-around;
         overflow: hidden;
+    }
+    .personal-information{
+        width: 40%;
+    }
+    .account-information{
+        width: 40%;
     }
 }

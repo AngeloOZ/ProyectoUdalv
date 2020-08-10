@@ -45,9 +45,6 @@
         }else{
             include "paginas/login.php";
         }
-        // echo '<pre>';
-        // echo '$_SESSION: ';
-        // var_dump($_SESSION);
     ?>
 </body>
 </html>

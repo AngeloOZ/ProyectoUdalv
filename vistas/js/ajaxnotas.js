@@ -74,7 +74,6 @@ function ListarNota(){
     xhr.addEventListener('load', ()=>{
         resultado = (xhr.response);
         $("#contenedorNotas").html(resultado);
-        console.log("2 listando...")
     })
     xhr.send(datos);
 }

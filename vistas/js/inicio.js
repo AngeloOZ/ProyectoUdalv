@@ -67,3 +67,13 @@ function AgregarLinkMoblie(){
         })
     }
 }
+function CambiarAvatar(){
+    const iconoAvatar = document.querySelector('.icono-profile').children[0];
+    const selectAvatar = document.getElementById('avatar-icon');
+    if(selectAvatar){
+        selectAvatar.addEventListener('change', ()=>{
+            iconoAvatar.removeAttribute('class');
+            iconoAvatar.setAttribute('class',selectAvatar.value);
+        })
+    }
+}

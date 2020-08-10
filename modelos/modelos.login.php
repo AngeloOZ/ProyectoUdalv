@@ -33,13 +33,15 @@ class ModelosFormularios{
 //?                          Modelos Registrar Usuario                         */
 //* -------------------------------------------------------------------------- */
     public static function mdlRegistrarUsuario($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(token, name, lastname,password, email) VALUES(:token, :name, :lastname, :password, :email)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(token, name, lastname,password, email, username) VALUES(:token, :name, :lastname, :password, :email, :avatar)");
 
         $stmt->bindParam(":token", $datos['token'], PDO::PARAM_STR);
         $stmt->bindParam(":name", $datos['name'], PDO::PARAM_STR);
         $stmt->bindParam(":lastname", $datos['lastname'], PDO::PARAM_STR);
         $stmt->bindParam(":email", $datos['email'], PDO::PARAM_STR);
         $stmt->bindParam(":password", $datos['password'], PDO::PARAM_STR);
+        $stmt->bindParam(":password", $datos['password'], PDO::PARAM_STR);
+        $stmt->bindParam(":avatar", $datos['avatar'], PDO::PARAM_STR);
 
         if($stmt->execute()){
             return "ok";
@@ -47,5 +49,38 @@ class ModelosFormularios{
             return ($stmt->errorInfo());
         }
     }
+//* -------------------------------------------------------------------------- */
+//?                          Modelos Registrar Usuario                         */
+//* -------------------------------------------------------------------------- */
+    public static function mdlEditarInformacionUsuario($tabla, $datos){
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name = :name, lastname = :lastname, username = :avatar, birthday = :date WHERE id = :id");
 
+        $stmt->bindParam(":id", $datos['id'], PDO::PARAM_INT);
+        $stmt->bindParam(":name", $datos['nombre'], PDO::PARAM_STR);
+        $stmt->bindParam(":lastname", $datos['apellido'], PDO::PARAM_STR);
+        $stmt->bindParam(":avatar", $datos['avatar'], PDO::PARAM_STR);
+        $stmt->bindParam(":date", $datos['fecha'], PDO::PARAM_STR);
+
+        if($stmt->execute()){
+            return "ok";
+        }else{
+            return ($stmt->errorInfo());
+        }
+        $stmt = null;
+    }
+
+    public static function ctrEditarPassword($tabla ,$id, $pass){
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET password = :pass WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":pass", $pass, PDO::PARAM_STR);
+
+        if($stmt->execute()){
+            $datos = $stmt->fetch();
+            $info = array("state"=>"ok", "info"=>$datos);
+            return $info;
+        }else{
+            $info = array("state"=>"error", "info" => $stmt->errorInfo());
+            return $info;
+        }
+    }
 }
