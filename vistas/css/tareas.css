@@ -102,9 +102,19 @@
   margin: 100px auto;
   width: 40%;
   height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 0px 30px;
 
+}
+.notas2::-webkit-scrollbar{
+  width: 12px;
+  background: #F37BEB;
+  border-radius: 20px;
+}
+
+.notas2::-webkit-scrollbar-thumb{
+  background: skyblue;
+  border-radius: 20px;
 }
 
 .notas2 .nota2{
@@ -120,10 +130,23 @@
 .notas2 h3{
   font-size: 20px;
   color: #fff;
-  text-align: left;
+  text-align: justify;
   float: left;
   width: 270px;
-  overflow: hidden;
+  overflow-y: scroll;
+  height: 80px;
+  padding-right: 20px;
+}
+
+.notas2 h3::-webkit-scrollbar{
+  width: 7px;
+  background: #6A83D8;
+  border-radius: 20px;
+}
+
+.notas2 h3::-webkit-scrollbar-thumb{
+  background: #5E13F5;
+  border-radius: 20px;
 }
 
 
@@ -143,10 +166,12 @@
   color: #fff;
 }
 .fecha{
+  margin-top: 70px;
   color: #fff;
   float: right;
 }
 #clock{
+  margin-top: 70px;
   text-align: right;
   margin-left: 30px;
 }
@@ -159,7 +184,7 @@
   cursor: pointer;
 }
 
-#cross{
+#crossT{
   display: inline;
   position: absolute;
   top: 0;
@@ -167,11 +192,21 @@
   color: #F51336;
   font-size: 20px;
 }
-#erraiser{
+#crossT:hover{
+  cursor: pointer;
+  color:#fff;
+}
+
+#erraiserT{
   display: inline;
   position: absolute;
   top: 0;
   left: 0;
   color: #F5A313;
   font-size: 20px;
+}
+
+#erraiserT:hover{
+  cursor: pointer;
+  color:#fff;
 }

@@ -10,8 +10,8 @@ class ControladorTareas{
             foreach($respuesta as $valor){
                 $contenido .= '
                 <div class="nota2" atributoidtask="'.Seguridad::encryption($valor["id"]).'">
-                    <i id="cross" class="far fa-times-circle"></i>
-                    <i id="erraiser" class="fas fa-eraser"></i>
+                    <i id="crossT" class="far fa-times-circle"></i>
+                    <i id="erraiserT" class="fas fa-eraser"></i>
                     <h3>'.$valor["name_task"].'</h3>
                     <i id="clock" class="far fa-clock"></i>
                     <label class="fecha">'.$valor["date"].'</label>

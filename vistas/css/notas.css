@@ -65,7 +65,7 @@
   color: #000;
   background-color: #fff;
   font-size: 16px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 
@@ -93,10 +93,19 @@
   display: grid;
   grid-template-columns: repeat(3,1fr);
   float: left;
-  overflow: scroll;
-  height: 400px;
- 
+  height: 400px; 
+  overflow-y: scroll;
+}
 
+.notas::-webkit-scrollbar{
+  width: 12px;
+  background: skyblue;
+  border-radius: 20px;
+}
+
+.notas::-webkit-scrollbar-thumb{
+  background: #F37BEB;
+  border-radius: 20px;
 }
 
 .notas .nota{
@@ -117,11 +126,23 @@
 
 .notas p{
   width: 190px;
-  height: 45px;
-  overflow: hidden;
+  height: 90px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   color: #fff;
   margin-top: 10px;
   text-align: justify;
+  padding-right: 20px;
+}
+.notas p::-webkit-scrollbar{
+  width: 7px;
+  background: #F8AFEE;
+  border-radius: 20px;
+}
+
+.notas p::-webkit-scrollbar-thumb{
+  background: #F37BEB;
+  border-radius: 20px;
 }
 
 
@@ -157,19 +178,29 @@
 #add{
   padding-top: 15px;
 }
-#cross{
+#crossN{
   display: inline;
   position: absolute;
   top: 0;
   right: 0;
-  color: wheat;
+  color: #F51336;
   font-size: 20px;
 }
-#erraiser{
+#crossN:hover{
+  cursor: pointer;
+  color:#fff;
+}
+
+#erraiserN{
   display: inline;
   position: absolute;
   top: 0;
   left: 0;
-  color: wheat;
+  color: #F5A313;
   font-size: 20px;
+}
+
+#erraiserN:hover{
+  cursor: pointer;
+  color:#fff;
 }

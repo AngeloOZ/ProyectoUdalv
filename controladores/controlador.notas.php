@@ -10,8 +10,8 @@ class ControladorNotas{
             foreach($respuesta as $valor){
                 $contenido .= '
                 <div class="nota" atributoidnota="'.Seguridad::encryption($valor["id"]).'">
-                    <i id="cross" class="far fa-times-circle"></i>
-                    <i id="erraiser" class="fas fa-eraser"></i>
+                    <i id="crossN" class="far fa-times-circle"></i>
+                    <i id="erraiserN" class="fas fa-eraser"></i>
                     <h3>'.$valor["title"].'</h3>
                     <p>'.$valor["description"].'</p>
                 </div>
