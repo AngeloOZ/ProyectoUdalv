@@ -16,8 +16,41 @@ class ModeloMood {
         }
     }
     public static function mdlMostrarEstado($tabla, $token){
+        // mensual $stmt = Conexion::conectar()->prepare("SELECT name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token and (MONTH(mood_day)=MONTH(now())) GROUP BY name");
+        //semanal $stmt = Conexion::conectar()->prepare("SELECT week(mood_day),name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token and (week(mood_day)= week(now())) GROUP BY name"); 
+        $stmt = Conexion::conectar()->prepare("SELECT name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token GROUP BY name");
+
+            $stmt->bindParam(":token", $token, PDO::PARAM_STR);
+    
+            if($stmt->execute()){
+                return $stmt->fetchAll();
+            }else{
+                return $stmt->errorInfo();
+            }
+            $stmt = null;
         
-            $stmt = Conexion::conectar()->prepare("SELECT name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token GROUP BY name");
+    
+    }
+    public static function mdlMostrarEstadoSemanal($tabla, $token){
+        // mensual $stmt = Conexion::conectar()->prepare("SELECT name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token and (MONTH(mood_day)=MONTH(now())) GROUP BY name");
+         $stmt = Conexion::conectar()->prepare("SELECT week(mood_day),name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token and (week(mood_day)= week(now())) GROUP BY name"); 
+        //$stmt = Conexion::conectar()->prepare("SELECT name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token GROUP BY name");
+
+            $stmt->bindParam(":token", $token, PDO::PARAM_STR);
+    
+            if($stmt->execute()){
+                return $stmt->fetchAll();
+            }else{
+                return $stmt->errorInfo();
+            }
+            $stmt = null;
+        
+    
+    }
+    public static function mdlMostrarEstadoMensual($tabla, $token){
+         $stmt = Conexion::conectar()->prepare("SELECT MONTH(mood_day),name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token and (MONTH(mood_day)=MONTH(now())) GROUP BY name");
+        //semanal $stmt = Conexion::conectar()->prepare("SELECT week(mood_day),name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token and (week(mood_day)= week(now())) GROUP BY name"); 
+        //$stmt = Conexion::conectar()->prepare("SELECT name, COUNT(*) AS 'numero' FROM $tabla WHERE token_user = :token GROUP BY name");
 
             $stmt->bindParam(":token", $token, PDO::PARAM_STR);
     
