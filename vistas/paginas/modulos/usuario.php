@@ -4,7 +4,7 @@
             <h2 class="title-information">Información Personal</h2>
             <form action="" method="post" class="form" id="formDataUser">
                 <div class="icono-profile">
-                    <i class="<?php echo $usuario["username"] ?>"></i>
+                    <i class="<?php echo $usuario["avatar"] ?>"></i>
                 </div>
                 <div class="grupo-form">
                     <label for="">Avatar</label>
