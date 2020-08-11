@@ -9,15 +9,13 @@ class ControladorTareas{
         if(!empty($respuesta)){
             foreach($respuesta as $valor){
                 $contenido .= '
-                <div class="nota2">
+                <div class="nota2" atributoidtask="'.Seguridad::encryption($valor["id"]).'">
                     <i id="cross" class="far fa-times-circle"></i>
                     <i id="erraiser" class="fas fa-eraser"></i>
-                    <h2 class = "editarTask" atributoidtask="'.Seguridad::encryption($valor["id"]).'">Edit</h2>
-                    <h2 class="eliminarTask" atributoidtask="'.Seguridad::encryption($valor["id"]).'">X</h2>
                     <h3>'.$valor["name_task"].'</h3>
                     <i id="clock" class="far fa-clock"></i>
                     <label class="fecha">'.$valor["date"].'</label>
-              </div>
+                </div>
                 ';
             }
             return $contenido;          
@@ -68,8 +66,9 @@ class ControladorTareas{
                 $datos = array(
                     "name_task" => $nombre,
                     "date" => $fecha,
-                    "token" => $token,
-                    "idTask" => $idTask
+                    "idTask" => $idTask,
+                    "state_task" => 0
+
                 );
                 $respuesta = ModeloTareas::mdlActualizarTarea($tabla, $datos);
                 if($respuesta == "ok"){

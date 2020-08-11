@@ -50,10 +50,11 @@ class ModeloTareas{
     public static function mdlActualizarTarea($tabla, $datos){
         try{
             $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name_task = :name_task, date = :date, state_task = :state_task  WHERE id = :id");
+            
             $stmt->bindParam(":name_task", $datos["name_task"], PDO::PARAM_STMT);
             $stmt->bindParam(":date", $datos["date"], PDO::PARAM_STMT);
-            $stmt->bindParam(":state_task", $datos["state_task"], PDO::PARAM_STMT);
-            $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+            $stmt->bindParam(":state_task", $datos["state_task"], PDO::PARAM_INT);
+            $stmt->bindParam(":id", $datos["idTask"], PDO::PARAM_INT);
             if($stmt->execute()){
                 return "ok";
             }else{

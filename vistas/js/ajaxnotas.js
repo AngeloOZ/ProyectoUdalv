@@ -3,11 +3,11 @@ const ContenedorNotas = document.getElementById("contenedorNotas");
 let bandEditarNotas = false;
 ListarNota();
 ContenedorNotas.addEventListener('click', e =>{
-    if(e.target.classList.contains('editarNota')){
+    if(e.target.classList.contains('fa-eraser')){
         let ctnNota = e.target.parentElement;
-        let idNota = e.target.getAttribute("atributoidnota");
-        CargarDatosNotas(ctnNota,idNota);
-    }else if(e.target.classList.contains('eliminarNota')){
+        let idNota = ctnNota.getAttribute("atributoidnota");
+        CargarDatosNotas(ctnNota, idNota);
+    }else if(e.target.classList.contains('fa-times-circle')){
         Swal.fire({
             title: 'Está Seguro?',
             text: "Una vez borrado no puede revertir la acción!",
@@ -19,7 +19,7 @@ ContenedorNotas.addEventListener('click', e =>{
             confirmButtonText: 'Si, Borralo!'
           }).then((result) => {
             if (result.value) {
-                let idNota = e.target.getAttribute("atributoidnota");
+                let idNota = e.target.parentElement.getAttribute("atributoidnota");
                 EliminarNota(idNota)
             }
           })
@@ -106,7 +106,7 @@ function CargarDatosNotas(nota, id){
     bandEditarNotas = true;
     const inputNota = document.getElementById("inputNota");
     const inputDesc = document.getElementById("inputDescripcion");
-    const inputIdNota = document.getElementById("inputId");
+    const inputIdNota = document.getElementById("inputIdnotas");
     inputNota.value = nota.querySelector('h3').textContent;
     inputDesc.value = nota.querySelector('p').textContent;
     inputIdNota.value = id;

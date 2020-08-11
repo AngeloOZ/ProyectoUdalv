@@ -9,11 +9,9 @@ class ControladorNotas{
         if(!empty($respuesta)){
             foreach($respuesta as $valor){
                 $contenido .= '
-                <div class="nota">
+                <div class="nota" atributoidnota="'.Seguridad::encryption($valor["id"]).'">
                     <i id="cross" class="far fa-times-circle"></i>
                     <i id="erraiser" class="fas fa-eraser"></i>
-                    <h2 class = "editarNota" atributoidnota="'.Seguridad::encryption($valor["id"]).'">Edit</h2>
-                    <h2 class="eliminarNota" atributoidnota="'.Seguridad::encryption($valor["id"]).'">X</h2>
                     <h3>'.$valor["title"].'</h3>
                     <p>'.$valor["description"].'</p>
                 </div>

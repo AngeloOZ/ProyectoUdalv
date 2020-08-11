@@ -2,12 +2,13 @@ const FormTask = document.getElementById("formAddTask");
 const ContenedorTask = document.getElementById("contenedorTask");
 let bandEditarTask = false;
 ListarTask();
-ContenedorTask.addEventListener('click', e =>{
-    if(e.target.classList.contains('editarTask')){
+
+ContenedorTask.addEventListener('click',e=>{
+    if(e.target.classList.contains('fa-eraser')){
         let ctnTask = e.target.parentElement;
-        let idTask = e.target.getAttribute("atributoidtask");
+        let idTask = ctnTask.getAttribute("atributoidtask");
         CargarDatosTask(ctnTask,idTask);
-    }else if(e.target.classList.contains('eliminarTask')){
+    }else if(e.target.classList.contains('fa-times-circle')){
         Swal.fire({
             title: 'Está Seguro?',
             text: "Una vez borrado no puede revertir la acción!",
@@ -19,7 +20,7 @@ ContenedorTask.addEventListener('click', e =>{
             confirmButtonText: 'Si, Borralo!'
           }).then((result) => {
             if (result.value) {
-                let idTask = e.target.getAttribute("atributoidtask");
+                let idTask = e.target.parentElement.getAttribute("atributoidtask");
                 EliminarTask(idTask)
             }
           })
@@ -41,7 +42,6 @@ function AgregarTask(){
 
     let datos = new FormData(FormTask);
     datos.append("operacionEnlace",operacion);
-
     let xhr;
     if(window.XMLHttpRequest) xhr = new XMLHttpRequest();
     else xhr = new ActiveXObject("Microsoft.XMLHTTP");
@@ -102,12 +102,13 @@ function EliminarTask(id){
     })
     xhr.send(datos);
 }
+const inputfecha = document.getElementById("fechaTarea");
 
 function CargarDatosTask(task, id){
     bandEditarTask = true;
-    const inputask = document.getElementById("name");
-    const inputfecha = document.getElementById("fecha");
-    const inputIdTask = document.getElementById("inputId");
+    const inputask = document.getElementById("nombreTarea");
+    const inputfecha = document.getElementById("fechaTarea");
+    const inputIdTask = document.getElementById("inputIdTareas");
     inputask.value = task.querySelector('h3').textContent;
     inputfecha.value = task.querySelector('label').textContent;
     inputIdTask.value = id;
