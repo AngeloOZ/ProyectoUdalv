@@ -165,6 +165,15 @@
     width:100%;
     display: flex;
 }
-.circulo{
-
+@media screen and (max-width: 700px){
+    .contenedor_principal_mood{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: calc(100vh - 80px);
+    }
+    .btngrafica:hover{
+            background-color: pink ;
+    }
 }

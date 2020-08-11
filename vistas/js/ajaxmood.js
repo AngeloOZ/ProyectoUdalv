@@ -60,7 +60,7 @@ function TraerDatos(){
         resultado= JSON.parse(xhr.response);
         popo=resultado;
         //console.log(popo);
-        actualizarGrafica();
+        actualizarGrafica(resultado);
     });
     xhr.send(datos);
     
@@ -81,7 +81,7 @@ function TraerDatos1(){
         resultado= JSON.parse(xhr.response);
         popo=resultado;
         //console.log(popo);
-        actualizarGrafica();
+        actualizarGrafica(resultado);
     });
     xhr.send(datos);
     
@@ -102,7 +102,7 @@ function TraerDatos2(){
         resultado= JSON.parse(xhr.response);
         popo=resultado;
         //console.log(popo);
-        actualizarGrafica();
+        actualizarGrafica(resultado);
     });
     xhr.send(datos);
     
