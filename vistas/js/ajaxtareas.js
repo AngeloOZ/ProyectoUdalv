@@ -74,7 +74,6 @@ function ListarTask(){
     xhr.addEventListener('load', ()=>{
         resultado = (xhr.response);
         $("#contenedorTask").html(resultado);
-        console.log("2 listando...")
     })
     xhr.send(datos);
 }

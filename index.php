@@ -7,7 +7,7 @@
     require_once "controladores/controlador.mood.php";
     require_once "controladores/controlador.notas.php";
     require_once "controladores/controlador.tareas.php";
-    // require_once "controladores/controlador.enlaces.php";
+    
     //*Modelos
     require_once "modelos/modelos.login.php";
     require_once "modelos/modelos.enlaces.php";
