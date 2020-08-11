@@ -23,6 +23,11 @@ formInsertar.addEventListener("submit",e=>{
     e.preventDefault();
     agregarMood();
     TraerDatos();
+    Swal.fire(
+        'Bien Hecho!',
+        'Registraste tu estado de ánimo!',
+        'success'
+      )
 })
 function agregarMood(){
     let operacion="insert";
