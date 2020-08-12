@@ -12,8 +12,8 @@ function TabPanelOnloadPage(){
             opciones[i].classList.add('active-tab');
             panels[i].classList.add('visible-tab');
         }else{
-            opciones[1].classList.add('active-tab');
-            panels[1].classList.add('visible-tab');
+            opciones[0].classList.add('active-tab');
+            panels[0].classList.add('visible-tab');
         }
     }
 }

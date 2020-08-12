@@ -17,8 +17,6 @@
     <link rel="stylesheet" type="text/css" href="./vistas/css/GRAFI.css">
     <link rel="stylesheet" type="text/css" href="./vistas/css/calendar.css">
     <link rel="stylesheet" type="text/css" href="./vistas/css/tareas.css">
-    <link rel="stylesheet" type="text/css" href="./vistas/css/añadir_nota.css">
-    <link rel="stylesheet" type="text/css" href="./vistas/css/añadir_tarea.css">
     <link rel="stylesheet" href="./vistas/css/sweetalert2.min.css">
     <link rel="stylesheet" href="./vistas/css/style.css">
     <!-- Link de Fontawesome -->

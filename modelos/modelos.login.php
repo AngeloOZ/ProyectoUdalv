@@ -33,7 +33,7 @@ class ModelosFormularios{
 //?                          Modelos Registrar Usuario                         */
 //* -------------------------------------------------------------------------- */
     public static function mdlRegistrarUsuario($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(token, name, lastname,password, email, username) VALUES(:token, :name, :lastname, :password, :email, :avatar)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(token, name, lastname,password, email, avatar) VALUES(:token, :name, :lastname, :password, :email, :avatar)");
 
         $stmt->bindParam(":token", $datos['token'], PDO::PARAM_STR);
         $stmt->bindParam(":name", $datos['name'], PDO::PARAM_STR);
@@ -53,7 +53,7 @@ class ModelosFormularios{
 //?                          Modelos Registrar Usuario                         */
 //* -------------------------------------------------------------------------- */
     public static function mdlEditarInformacionUsuario($tabla, $datos){
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name = :name, lastname = :lastname, username = :avatar, birthday = :date WHERE id = :id");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET name = :name, lastname = :lastname, avatar = :avatar, birthday = :date WHERE id = :id");
 
         $stmt->bindParam(":id", $datos['id'], PDO::PARAM_INT);
         $stmt->bindParam(":name", $datos['nombre'], PDO::PARAM_STR);
