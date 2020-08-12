@@ -23,11 +23,14 @@ formInsertar.addEventListener("submit",e=>{
     e.preventDefault();
     agregarMood();
     TraerDatos();
-    Swal.fire(
-        'Bien Hecho!',
-        'Registraste tu estado de ánimo!',
-        'success'
-      )
+   /* Swal.fire({
+        icon: resultado["RespType"],
+        title: resultado["sms2"],
+        text: resultado["sms"],
+        showConfirmButton: false,
+        timer: 2000,
+    })*/
+    
 })
 function agregarMood(){
     let operacion="insert";
@@ -42,8 +45,15 @@ function agregarMood(){
     }
     xhr.open("POST","controladores/controlador.mood.php");
     xhr.addEventListener("load",()=>{
-        resultado= (xhr.response);
+        resultado= JSON.parse(xhr.response);
         console.log(resultado);
+        Swal.fire({
+        icon: resultado["RespType"],
+        title: resultado["sms2"],
+        text: resultado["sms"],
+        showConfirmButton: false,
+        timer: 2000,
+    })
     });
     xhr.send(datos);
 }

@@ -18,15 +18,16 @@ class ControladorMood
                 );
                 $respuesta = ModeloMood::mdlRegistrarMood($tabla, $datos);
                 if ($respuesta == "Ok") {
-                    echo "Guardado Exitoso";
-                    LimpiarCache();
+                    AlertaSuccessMood('Registraste tu estado de ánimo!','Bien Hecho!');
+                   
                 } else {
-                    echo "Error $respuesta[1]: $respuesta[2]<br>";
-                    LimpiarCache();
+                    AlertaErrorMood('Ya registraste anteriormente tu estado de ánimo este día');
+                    
                 }
-            } else {
-                echo "No seleccionaste nada";
-            }
+            } 
+        }
+        else {
+            AlertaErrorMood('No seleccionaste tu estado de ánimo');
         }
     }
     public static function ctrMostrarEstado()
@@ -54,7 +55,14 @@ class ControladorMood
         echo json_encode($resultado);
     }
 }
-
+function AlertaErrorMood($sms){
+    $resp = array("RespType"=>"error","sms"=>$sms, "sms2"=>"Oops...");
+    echo json_encode($resp);
+}
+function AlertaSuccessMood($sms, $sms2){
+    $resp = array("RespType"=>"success","sms"=>$sms, "sms2"=>$sms2);
+    echo json_encode($resp);
+}
 
 if (isset($_POST["operacionMood"])) {
     session_start();
