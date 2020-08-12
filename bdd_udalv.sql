@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-08-2020 a las 05:07:36
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.5
+-- Tiempo de generación: 12-08-2020 a las 05:06:39
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -113,7 +113,7 @@ INSERT INTO `notas` (`id`, `title`, `description`, `token_user`, `id_user`) VALU
 CREATE TABLE `tarea` (
   `id` int(11) NOT NULL,
   `name_task` varchar(80) NOT NULL,
-  `description_task` text DEFAULT NULL,
+  `date` date NOT NULL,
   `state_task` tinyint(1) NOT NULL DEFAULT 0,
   `token_user` varchar(150) NOT NULL,
   `id_user` int(11) NOT NULL
@@ -130,7 +130,7 @@ CREATE TABLE `usuario` (
   `token` varchar(150) NOT NULL,
   `name` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
+  `avatar` varchar(50) DEFAULT NULL,
   `password` varchar(150) NOT NULL,
   `email` varchar(80) NOT NULL,
   `birthday` date DEFAULT NULL
@@ -140,7 +140,7 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `token`, `name`, `lastname`, `username`, `password`, `email`, `birthday`) VALUES
+INSERT INTO `usuario` (`id`, `token`, `name`, `lastname`, `avatar`, `password`, `email`, `birthday`) VALUES
 (3, '$2y$10$ZgYSnZlmSD9jM8z4kO1sqeugQOsEi/7N7F2.P.UdvKD7isdTMmuQq', 'Angello', 'Ordonez', NULL, '$2y$10$bnx5v7yuX/Oclko3YH1CEu82N5bTLj9tjCb098.U8XZkVZXJMnSXu', 'angello@gmail.com', NULL),
 (4, '$2y$10$6va9f7N5CdoqPMsaR8du4.ClqtPyT0bzgdd.eA4xT2KZxclCZ5/02', 'Milena', 'Ballesteros', NULL, '$2y$10$Z9HXmpyeUxuT8lVfYLPc9OkE9o3Tn7V0plCfoC4ORG12uQHwBpqr2', 'mile@gmail.com', NULL);
 
