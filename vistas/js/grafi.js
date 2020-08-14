@@ -1,7 +1,7 @@
 am4core.useTheme(am4themes_animated);
 
 var chart = am4core.create("chartdiv", am4charts.PieChart);
-setTimeout(()=>{
+/*setTimeout(()=>{
     console.log(popo);
     chart.data = [{
         "name": popo[0].name,
@@ -21,7 +21,31 @@ setTimeout(()=>{
         "name": popo[4].name,
         "numero": popo[4].numero ,
     }, ];
-    },500)
+    },500)*/
+
+    function actualizarGrafica(){
+        setTimeout(()=>{
+            console.log(popo);
+            chart.data = [{
+                "name": popo[0].name,
+                "numero": popo[0].numero ,
+            }, {
+                "name": popo[1].name,
+                "numero": popo[1].numero
+            },
+            {
+                "name": popo[2].name,
+                "numero": popo[2].numero ,
+            }, {
+                "name": popo[3].name,
+                "numero": popo[3].numero
+            }, 
+            {
+                "name": popo[4].name,
+                "numero": popo[4].numero ,
+            }, ];
+            },500)
+    }
 
 /*chart.data = [{
     "name": "Lithuania",
