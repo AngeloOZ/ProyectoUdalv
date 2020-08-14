@@ -50,5 +50,10 @@ if (isset($_POST["operacionMood"])) {
                 $leer->ctrMostrarEstado();
                 break;
             }
+        case "insert":{
+            $insertar =new ControladorMood();
+            $insertar->ctrRegistrarMood();
+        break;
+        }
     }
 }

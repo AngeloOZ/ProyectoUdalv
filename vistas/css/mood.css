@@ -142,7 +142,23 @@
     cursor: pointer;
 }
 .contenedor_botones{
-
+    height: 40px;
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.btngrafica{
+    height: 40px;
+    width:200px;
+    background-color: #202020af;
+    text-decoration: none;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    transition: .3s ease-out background-color;
+}
+.btngrafica:hover{
+    background-color: #6676E1;
 }
 .contenedor_grafica{
     height: 450px;
